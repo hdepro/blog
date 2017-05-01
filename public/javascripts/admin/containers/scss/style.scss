@@ -1,0 +1,29 @@
+.add-tag-form{
+  opacity:0;
+  transition:all 1s;
+  &.show{
+    opacity:1;
+    width:800px;
+  }
+}
+
+#home{
+  a{
+    color:#585858;
+  }
+}
+
+
+#blog{
+  text-align:center;
+  [name=title]{
+    font-size:25px;
+    [name=tag]{
+      float:right;
+      font-size:16px;
+    }
+  }
+  #blog-content{
+    font-size:16px;
+  }
+}

@@ -3,13 +3,6 @@
  */
 
 let mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/test");
-let db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    console.log("mongodb connected!");
-});
-
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
@@ -23,22 +16,10 @@ let userSchema = new Schema({
 
 let User = mongoose.model("User",userSchema);
 
-function createUser(data,callback){
+exports.create = function(data,callback){
     User.create(data,callback);
-}
+};
 
-function getAllUser(callback){
+exports.getAll = function(callback){
     User.find(callback);
-}
-
-createUser({
-    id:1,
-    email:"test1@test1",
-    name:"test1",
-    password:"test1",
-    createTime:1,
-    updateTime:1
-},function(err,doc){
-    if(err) console.log(err);
-    else console.log(doc);
-});
+};
