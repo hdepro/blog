@@ -2,41 +2,36 @@
  * Created by heben on 2017/4/27.
  */
 
-let hash = require('pbkdf2-password')();
+let secure = require('pbkdf2-password')();
 let Message = require("../common/message");
 
 // dummy database
 
-let users = {
-    tj: { name: 'tj' }
-};
+let users = [
+    {name:"heben",password:"123"}
+];
 
 // when you create a user, generate a salt
 // and hash the password ('foobar' is the pass here)
-
-hash({ password: 'foobar' }, function (err, pass, salt, hash) {
-    if (err) throw err;
-    // store the salt & hash in the "db"
-    users.tj.salt = salt;
-    users.tj.hash = hash;
-});
 
 
 // Authenticate using our plain-object database of doom!
 
 function authenticate(name, pass, fn) {
     if (!module.parent) console.log('authenticating %s:%s', name, pass);
-    let user = users[name];
+    let user = users.find(u => u.name === name);
     // query the db for the given username
     if (!user) return fn(new Error('cannot find user'));
     // apply the same algorithm to the POSTed password, applying
     // the hash against the pass / salt, if there is a match we
     // found the user
-    hash({ password: pass, salt: user.salt }, function (err, pass, salt, hash) {
-        if (err) return fn(err);
-        if (hash == user.hash) return fn(null, user);
-        fn(new Error('invalid password'));
-    });
+    // secure({ password: pass, salt: key }, function (err, pass, salt, hash) {
+    //     if (err) return fn(err);
+    //     if (hash == hashKey) return fn(null, user);
+    //     fn(new Error('invalid password'));
+    // });
+    if(pass === user.password) return fn(null,user);
+    fn(new Error('invalid password'));
 }
 
 function restrict(req, res, next) {

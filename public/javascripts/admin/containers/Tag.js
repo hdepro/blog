@@ -5,17 +5,17 @@
 import React from 'react'
 //import {connect} from 'react-redux'
 import {connect} from '../../../src/react-redux/Connect'
-import {CREATE_TAG,GET_ALL_TAG} from '../../constants/Actions'
+import {CREATE_TAG,GET_ALL_TAG,EDIT_TAG,DELETE_TAG} from '../../constants/Actions'
 import {Actions} from '../actions/index'
 import './scss/style.scss'
 
-import {Tag,Input,Form,Button,Icon} from 'antd'
+import {Tag,Input,Form,Button,Icon,Badge} from 'antd'
 const FormItem = Form.Item;
 
 class TagBox extends React.Component{
     constructor(props){
         super(props);
-        this.content = undefined;
+        this.input = document.createElement("input");
     }
     componentWillMount(){
         let {dispatch} = this.props;
@@ -32,11 +32,46 @@ class TagBox extends React.Component{
                 this.props.dispatch(Actions.create(CREATE_TAG,values));
             }
         });
-    }
+    };
     cancel = (e)=>{
         e.preventDefault();
         document.getElementsByClassName("add-tag-form").item(0).classList.remove("show");
-    }
+    };
+    onClose = (e) => {
+        let target = e.target;
+        while(target.dataset.id == undefined){
+            target = target.parentNode;
+        }
+        if(confirm("确认删除吗")){
+            this.props.dispatch(Actions.deleteById(DELETE_TAG,target.dataset.id));
+        }
+        e.stopPropagation();
+    };
+    handleClick = (e)=>{
+        if(e.target.tagName == "INPUT") return;
+        const target = Array.from(e.currentTarget.children).find(t => t.contains(e.target));
+        // let children = e.currentTarget.children;
+        // let len = children.length,target;
+        // for(let i=0;i<len;i++){
+        //     if(children[i].contains(e.target)){
+        //         target = children[i];
+        //         break;
+        //     }
+        // }
+        console.log(e.currentTarget,e.target,target.dataset.id);
+        this.input.defaultValue = target.dataset.name;
+        this.input.onblur = () => {
+            this.input.parentNode.replaceChild(target,this.input);
+        };
+        this.input.onkeydown = (e) => {
+            if(e.keyCode == 13){
+                this.input.blur();
+                this.props.dispatch(Actions.edit(EDIT_TAG,{_id:target.dataset.id,name:this.input.value}));
+            }
+        };
+        target.parentNode.replaceChild(this.input,target);
+        this.input.focus();
+    };
     render(){
         let {c_tag_list} = this.props;
         const { getFieldDecorator, getFieldsError } = this.props.form;
@@ -74,7 +109,11 @@ class TagBox extends React.Component{
                         </Button>
                     </FormItem>
                 </Form>
-                {c_tag_list.map(tag => <Tag>{tag.name}</Tag>)}
+                <div onClick={this.handleClick}>
+                    {c_tag_list.map(tag => <Badge count={tag.count} data-id={tag._id} data-name={tag.name}>
+                        <Tag closable={tag.count == 0} className="tag" onClose={this.onClose}>{tag.name}</Tag>
+                    </Badge>)}
+                </div>
             </div>
         )
     }

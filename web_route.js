@@ -22,13 +22,13 @@ route.get("/blog/getAll",Blog.getAll);
 route.post("/blog/create",Blog.create);
 route.get("/blog/getById/:_id",Blog.getById);
 route.get("/blog/delete/:_id",Blog.delete);
-route.get("/blog/edit",Blog.edit);
+route.post("/blog/edit",Blog.edit);
 
 route.get("/tag/getAll",Tag.getAll);
 route.post("/tag/create",Tag.create);
 route.get("/tag/getById/:_id",Tag.getById);
 route.get("/tag/delete/:_id",Tag.delete);
-route.get("/tag/edit",Tag.edit);
+route.post("/tag/edit",Tag.edit);
 
 route.get("/",Auth.subscriber);
 

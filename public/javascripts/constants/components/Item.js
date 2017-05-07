@@ -3,19 +3,20 @@
  */
 
 import React from 'react'
+import {markdown} from 'markdown'
 import './style.scss'
 
 export class Item extends React.Component{
     componentDidMount(){
-        this.refs.content.innerHTML = this.props.content;
+        this.refs.content.innerHTML = markdown.toHTML(this.props.content);
     }
     render(){
-        const {title,content,createTime,extra} = this.props;
+        const {title,createTime,extra} = this.props;
         return(
             <div className="item">
                 <div className="header">
                     <div className="extra">
-                        <p>发布于&nbsp;&nbsp;{new Date(createTime).toLocaleDateString()}</p>
+                        <p>发布于:&nbsp;&nbsp;{new Date(createTime).toLocaleString()}</p>
                         {extra}
                     </div>
                     <h3 className="title">{title}</h3>

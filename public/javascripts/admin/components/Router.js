@@ -27,7 +27,7 @@ export const route =(
             <Route exact path="/" component={Home}/>
             <Route path="/blog/:_id" component={Blog}/>
             <Route path="/create" component={CreateBlog}/>
-            <Route path="/edit" component={CreateBlog}/>
+            <Route path="/edit/:_id" component={CreateBlog}/>
             <Route path="/tag" component={Tag}/>
         </App>
     </BrowserRouter>

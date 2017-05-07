@@ -23,9 +23,11 @@ exports.create = function(data,callback){
 };
 
 exports.edit = function(data,callback){
-    Object.assign(data,{updateTime:+new Date()});
+    data.updateTime = +new Date();
     Blog.findById(data._id,function(err,blog){
-        data.save(callback);
+        //Object.assign(blog,data);
+        //blog.save(callback);
+        Blog.update({_id:blog._id},data,callback);
     });
 };
 
@@ -39,4 +41,12 @@ exports.delete = function(_id,callback){
 
 exports.getById = function(_id,callback){
     Blog.findById(_id,callback);
+};
+
+exports.getByTagId = function(tagId,callback){
+    Blog.find({tagId},callback);
+};
+
+exports.count = function(tagId,callback){
+    return Blog.count({tagId},callback);
 };

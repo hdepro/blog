@@ -20,7 +20,8 @@ exports.create = function(data,callback){
 exports.edit = function(data,callback){
     Object.assign(data,{updateTime:+new Date()});
     Tag.findById(data._id,function(err,blog){
-        data.save(callback);
+        Object.assign(blog,data);
+        blog.save(callback);
     });
 };
 exports.getAll = function(callback){

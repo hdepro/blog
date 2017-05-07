@@ -23,5 +23,11 @@
   }
   .content{
     font-size:16px;
+    height:200px;
+    overflow: hidden;
+    &:after{
+      content:"点击阅读更多>>";
+      color:green;
+    }
   }
 }

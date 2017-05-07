@@ -34,6 +34,18 @@ class ActionClass{
         }
     }
 
+    edit(Action,data){
+        return dispatch => {
+            return fetchJsonPost(Action.route,data,function(json) {
+                console.log('json', json);
+                dispatch({
+                    type: Action,
+                    data: data
+                })
+            })
+        }
+    }
+
     getById(Action,_id){
         return dispatch => {
             return fetchGet(Action.route+`/${_id}`, function (json) {

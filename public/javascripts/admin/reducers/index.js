@@ -39,6 +39,10 @@ function reducerTagArray(state=[],action){
         case DELETE_TAG:
             let index = state.findIndex(s => s._id === action.data);
             return [...state.slice(0,index),...state.slice(index+1)];
+        case EDIT_TAG:
+            let tag = state.find(s => s._id === action.data._id);
+            Object.assign(tag,action.data);
+            return state;//[...state];
         default :
             return state;
     }

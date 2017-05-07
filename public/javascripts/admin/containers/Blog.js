@@ -8,7 +8,7 @@ import {connect} from '../../../src/react-redux/Connect'
 import {GET_BLOG} from '../../constants/Actions'
 import {Actions} from '../actions/index'
 
-import {Card} from 'antd'
+import {markdown} from 'markdown'
 
 class Blog extends React.Component{
     constructor(props){
@@ -25,7 +25,7 @@ class Blog extends React.Component{
     }
     render(){
         let {c_blog} = this.props;
-        if(c_blog.content) this.content.innerHTML=c_blog.content;
+        if(c_blog.content && this.content) this.content.innerHTML=markdown.toHTML(c_blog.content);
         return(
             <div id="blog">
                 <h2 name="title">

@@ -23,12 +23,20 @@ class Home extends React.Component{
     componentDidMount(){
         console.log("Home componentDidMount ",this.context.store,this.props,this.state);
     }
+    deleteBlog = (_id)=>{
+        if(confirm("确认删除该博客吗")){
+            this.props.dispatch(Actions.deleteById(DELETE_BLOG,_id));
+        }
+    }
+    editBlog = (_id)=>{
+        this.props.history.push("/edit/"+_id);
+    }
     render(){
         let {c_list} = this.props;
         const buttonConf = [
-            {icon:'eye',name:'查看'},
-            {icon:'edit',name:'编辑'},
-            {icon:'delete',name:'删除'}
+            //{icon:'eye',name:'查看'},
+            {icon:'edit',name:'编辑',onClick:this.editBlog},
+            {icon:'delete',name:'删除',onClick:this.deleteBlog}
         ];
         return(
             <div id="home">
@@ -36,7 +44,7 @@ class Home extends React.Component{
                     {c_list.map(blog=>{
                         return (
                             <Link to={"/blog/"+blog._id}>
-                                <Item {...blog} extra={<OperateButton buttonConf={buttonConf}/>}/>
+                                <Item {...blog} extra={<OperateButton data={blog._id} buttonConf={buttonConf}/>}/>
                                 <br/>
                             </Link>
                         )
@@ -57,12 +65,29 @@ function mapStateToProps(state){
 export default connect(mapStateToProps)(Home)
 
 
-const OperateButton = ({buttonConf}) => {
-    return(
-        <Button.Group>
-            {buttonConf.map(button =>
-                <Button icon={button.icon} style={{marginRight:'10px'}}>{button.name}</Button>
-            )}
-        </Button.Group>
-    )
-};
+class OperateButton extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    handleClick = (e) => {
+        const {buttonConf,data} = this.props;
+        let target = e.target;
+        while(target.tagName.toLowerCase() != "button"){
+           target = target.parentNode;
+        }
+        target = buttonConf.find(b => b.name === target.name);
+        const {onClick} = target;
+        e.preventDefault();
+        onClick && onClick(data);
+    };
+    render(){
+        const {buttonConf} = this.props;
+        return(
+            <Button.Group onClick={this.handleClick}>
+                {buttonConf.map((button,index) =>
+                    <Button icon={button.icon} style={{marginRight:'10px'}} name={button.name}>{button.name}</Button>
+                )}
+            </Button.Group>
+        )
+    }
+}

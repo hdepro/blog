@@ -44,9 +44,23 @@ create({
         console.log(doc);
         doc.remove({},function(err,doc){
             console.log("remove");
+            return Promise.resolve(111);
+        }).then(function(data){
+            console.log("data",data);
+            return 222;
+        }).then(function(data){
+            console.log("data",data);
         });
         console.log("remove finished");
     }
 });
 
-console.log("heha");
+let s = Blog.findOne({updateTime:1},function(err,doc){
+    console.log("count",doc);
+    console.log("count",Object.assign({},doc));
+    return doc;
+}).exec().then(function(data){
+    console.log("then",data);
+});
+
+console.log("heha",s instanceof Promise);
