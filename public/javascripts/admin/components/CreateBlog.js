@@ -98,7 +98,7 @@ class CreateBlog extends React.Component{
                             确定
                         </Button>
                     </FormItem>
-                    <FormItem label="编辑内容" style={{visibility:'hidden11'}}>
+                    <FormItem label="编辑内容" style={{visibility:'hidden'}}>
                         <Input rows={1} type="textarea" ref={(input) => this.refer = input} />
                     </FormItem>
                 </Form>
