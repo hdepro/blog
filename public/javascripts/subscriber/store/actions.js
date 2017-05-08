@@ -19,3 +19,9 @@ export const getAllTag = ({commit}) =>
         commit(types.GET_ALL_TAG.action,{data})
     });
 
+export const getAllFilingArticle = ({commit,state}) => {
+    console.log("getAllFilingArticle",state);
+    api.getAllArticle(types.GET_ALL_ARTICLE.route,(data) => {
+        commit(types.GET_ALL_FILING_ARTICLE.action,{data})
+    });
+};

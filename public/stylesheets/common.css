@@ -1,0 +1,13 @@
+*:not(ol){
+    margin:0;
+    padding:0;
+    color:#585858;
+}
+
+li{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}

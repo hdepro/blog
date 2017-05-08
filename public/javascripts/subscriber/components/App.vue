@@ -1,19 +1,29 @@
 
 <template>
- <div id="app">
-  <sidebar></sidebar>
-  <home></home>
- </div>
+    <div id="app">
+        <sidebar></sidebar>
+        <div id="content">
+            <router-view></router-view>
+        </div>
+    </div>
 </template>
 
 <script>
     import sidebar from './Sidebar.vue'
-    import home from './Home.vue'
 
     export default {
         components:{
-            sidebar,
-            home
+            sidebar
         }
     }
 </script>
+
+<style>
+    #content{
+        display:inline-block;
+        vertical-align:top;
+        margin-left:3%;
+        margin-top:20px;
+        width:84%;
+    }
+</style>

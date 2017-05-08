@@ -30,6 +30,6 @@ route.get("/tag/getById/:_id",Tag.getById);
 route.get("/tag/delete/:_id",Tag.delete);
 route.post("/tag/edit",Tag.edit);
 
-route.get("/",Auth.subscriber);
+route.use("/",Auth.subscriber);
 
 module.exports = route;

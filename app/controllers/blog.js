@@ -1,6 +1,7 @@
 /**
  * Created by heben on 2017/4/27.
  */
+let markdown = require('markdown').markdown;
 
 let Blog = require("../models").Blog;
 let Tag = require("../models").Tag;
@@ -13,7 +14,7 @@ exports.getAll = function(req,res,next){
             //console.log("getAll blogs",blogs);
             let data = blogs.map(blog => {
                 let data = blog.toObject();
-                data.content = blog.content.split(/\n+/).slice(0,6).join("\n\n");
+                data.content = markdown.toHTML(blog.content.split(/\n+/).slice(0,6).join("\n\n"));
                 console.log(data.content);
                 return data;
             });
@@ -69,6 +70,7 @@ exports.getById = function(req,res,next){
                 else{
                     //blog.tagName = tag.name;
                     let data = blog.toObject();
+                    data.content = markdown.toHTML(data.content);
                     data.tagName = tag.name;
                     let obj = Object.assign(Message.success,{data});
                     res.json(obj);

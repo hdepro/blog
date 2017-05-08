@@ -20,8 +20,8 @@ const state = {
     tags:[
 
     ],
-    articleClass:[
-        {}
+    articleFiling:[
+        {date:String,data:[]}
     ]
 };
 

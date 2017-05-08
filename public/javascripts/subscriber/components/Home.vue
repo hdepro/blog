@@ -27,7 +27,6 @@
 
 <style scoped>
     #home{
-
     }
 </style>
 
