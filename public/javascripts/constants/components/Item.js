@@ -8,10 +8,11 @@ import './style.scss'
 
 export class Item extends React.Component{
     componentDidMount(){
-        this.refs.content.innerHTML = markdown.toHTML(this.props.content);
+        this.refs.content.innerHTML = this.props.contentHtml;
     }
     render(){
         const {title,createTime,extra} = this.props;
+        //Debugger.log("this.props",this.props);
         return(
             <div className="item">
                 <div className="header">

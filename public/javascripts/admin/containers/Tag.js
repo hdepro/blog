@@ -9,7 +9,7 @@ import {CREATE_TAG,GET_ALL_TAG,EDIT_TAG,DELETE_TAG} from '../../constants/Action
 import {Actions} from '../actions/index'
 import './scss/style.scss'
 
-import {Tag,Input,Form,Button,Icon,Badge} from 'antd'
+import {Tag,Input,Form,Button,Badge,message} from 'antd'
 const FormItem = Form.Item;
 
 class TagBox extends React.Component{
@@ -26,10 +26,13 @@ class TagBox extends React.Component{
     }
     add = (e)=>{
         e.preventDefault();
+        const callback = ()=>{
+            message.success("创建标签成功",2);
+        };
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received create tag values of form: ', values);
-                this.props.dispatch(Actions.create(CREATE_TAG,values));
+                this.props.dispatch(Actions.create(CREATE_TAG,values,callback));
             }
         });
     };
@@ -83,14 +86,14 @@ class TagBox extends React.Component{
                         {getFieldDecorator('name', {
                             rules: [{ required: true, message: 'Please input your tag name!' }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
+                            <Input type="text" placeholder="标签名" />
                         )}
                     </FormItem>
                     <FormItem>
                         {getFieldDecorator('description', {
-                            rules: [{ required: true, message: 'Please input your Password!' }],
+                            rules: [{ required: true, message: 'Please input your tag description!' }],
                         })(
-                            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
+                            <Input type="text" placeholder="描述" />
                         )}
                     </FormItem>
                     <FormItem>
@@ -108,7 +111,7 @@ class TagBox extends React.Component{
                             取消
                         </Button>
                     </FormItem>
-                </Form>
+                </Form><br/><br/>
                 <div onClick={this.handleClick}>
                     {c_tag_list.map(tag => <Badge count={tag.count} data-id={tag._id} data-name={tag.name}>
                         <Tag closable={tag.count == 0} className="tag" onClose={this.onClose}>{tag.name}</Tag>

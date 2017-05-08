@@ -7,6 +7,10 @@ let Blog = require("../models").Blog;
 let Tag = require("../models").Tag;
 let Message = require("../common/message");
 
+const mdToHtml = (content,length) => {
+    return markdown.toHTML(content.split(/\n+/).slice(0,length).join("\n\n"));
+};
+
 exports.getAll = function(req,res,next){
     Blog.getAll(function(err,blogs){
         if(err) console.log("Blog getAll error",err);
@@ -14,8 +18,8 @@ exports.getAll = function(req,res,next){
             //console.log("getAll blogs",blogs);
             let data = blogs.map(blog => {
                 let data = blog.toObject();
-                data.content = markdown.toHTML(blog.content.split(/\n+/).slice(0,6).join("\n\n"));
-                console.log(data.content);
+                data.contentHtml = mdToHtml(blog.content,6);
+                //console.log(data.content);
                 return data;
             });
             let obj = Object.assign(Message.success,{data});
@@ -30,8 +34,17 @@ exports.create = function(req,res,next){
     Blog.create(data,function(err,blog){
         if(err) console.log("Blog create error",err);
         else{
-            //console.log("create blog",blog);
-            res.json(Message.success);
+            console.log("create blog",blog);
+            // create blog { __v: 0,
+            //     title: 'test',
+            //     tagId: '5910746d4ba73d1290b58e5f',
+            //     content: 'ssss',
+            //     createTime: 1494251885343,
+            //     _id: 5910796d98681a112c20dc19,
+            //     state: 'close' }
+            let data = blog.toObject();
+            data.contentHtml = mdToHtml(blog.content);
+            res.json(Object.assign(Message.success,{data}));
         }
     })
 };
@@ -42,7 +55,7 @@ exports.edit = function(req,res,next){
     Blog.edit(data,function(err,blog){
         if(err) console.log("Blog edit error",err);
         else{
-            console.log("edit blog",blog);
+            console.log("edit blog",blog);   //edit blog { n: 1, nModified: 1, ok: 1 }
             res.json(Message.success);
         }
     })
@@ -70,7 +83,7 @@ exports.getById = function(req,res,next){
                 else{
                     //blog.tagName = tag.name;
                     let data = blog.toObject();
-                    data.content = markdown.toHTML(data.content);
+                    data.contentHtml = mdToHtml(blog.content);
                     data.tagName = tag.name;
                     let obj = Object.assign(Message.success,{data});
                     res.json(obj);

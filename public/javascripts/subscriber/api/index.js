@@ -3,6 +3,7 @@
  */
 
 import {fetchGet,fetchJsonPost} from '../../constants/Fetch'
+import {Debugger} from '../../constants/Logger'
 
 export const getAllArticle = (url,cb) => {
     fetchGet(url,json => cb(json.data))
@@ -15,3 +16,5 @@ export const getArticle = (url,_id,cb) => {
 export const getAllTag = (url,cb) => {
     fetchGet(url,json => cb(json.data))
 };
+
+window.Debugger = Debugger;

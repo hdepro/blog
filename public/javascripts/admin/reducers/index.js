@@ -13,8 +13,11 @@ function reducerBlogArray(state=[],action){
             return action.data;
         case CREATE_BLOG:
             return [...state,action.data];
+        case EDIT_BLOG:
+            let index = state.findIndex(b => b._id === action.data._id);
+            return [...state.slice(0,index),Object.assign(state[index],action.data),...state.slice(index+1)];
         case DELETE_BLOG:
-            let index = state.findIndex(s => s._id === action.data);
+            index = state.findIndex(s => s._id === action.data);
             return [...state.slice(0,index),...state.slice(index+1)];
         default :
             return state;

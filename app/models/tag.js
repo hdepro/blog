@@ -6,6 +6,7 @@ let Schema = mongoose.Schema;
 
 let tagSchema = new Schema({
     name:String,
+    description:String,
     createTime:Number,
     updateTime:Number
 });

@@ -6,17 +6,6 @@ import fetch from 'isomorphic-fetch'
 // import 'fetch-polyfill'
 // import 'es6-promise'
 
-let Debugger = {};
-Debugger.log = function(...args){
-    try{
-        if (process.env.NODE_ENV !== 'production') {
-            console.log(...args);
-        }
-    }catch(error){
-        return error;
-    }
-};
-
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
         Debugger.log("checkStatus success");
@@ -30,7 +19,7 @@ function checkStatus(response) {
 }
 
 function checkLogin(json) {
-    Debugger.log("checkLogin = "+JSON.stringify(json));
+    //Debugger.log("checkLogin = "+JSON.stringify(json));
     if(json.redirectUrl){
         Debugger.log("json.redirectUrl = "+json.redirectUrl);
         location.href = json.redirectUrl;

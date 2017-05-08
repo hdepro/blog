@@ -25,16 +25,15 @@ class Blog extends React.Component{
     }
     render(){
         let {c_blog} = this.props;
-        if(c_blog.content && this.content) this.content.innerHTML=markdown.toHTML(c_blog.content);
+        if(c_blog.content && this.content) this.content.innerHTML=c_blog.contentHtml;
         return(
             <div id="blog">
                 <h2 name="title">
-                    {c_blog.title}
                     <span name="tag">{new Date(c_blog.createTime).toLocaleString()}</span>
+                    {c_blog.title}
                 </h2>
                 <div id="blog-content">
                 </div>
-                <h4>{c_blog.tagName}</h4>
             </div>
         )
     }

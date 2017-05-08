@@ -4,7 +4,7 @@
             <span>{{new Date(article.createTime).toLocaleString()}}</span>
             <h2>{{article.title}}</h2>
         </div>
-        <div class="content" v-html="article.content"></div>
+        <div class="content" v-html="article.contentHtml"></div>
         <div class="footer"><router-link :to="{path:'/article/'+article._id}">点击阅读更多>></router-link></div>
     </div>
 </template>

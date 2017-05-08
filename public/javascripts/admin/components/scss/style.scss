@@ -1,5 +1,11 @@
 .create-blog-form{
   width:80%;
   margin:auto;
-  font-size:14px;
+  .ant-form-text{
+    font-size:20px;
+  }
+  input,.ant-select-selection,textarea{
+    height:40px;
+    font-size:18px;
+  }
 }

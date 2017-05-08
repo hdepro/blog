@@ -16,7 +16,7 @@ module.exports = {
     entry:{
         "login": './public/javascripts/admin/components/login/index.js',
         "admin": './public/javascripts/admin/index.js',
-        "subscriber": './public/javascripts/subscriber/index.js'
+        //"subscriber": './public/javascripts/subscriber/index.js'
     },
   resolve: {
       alias: {

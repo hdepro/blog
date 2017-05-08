@@ -4,6 +4,7 @@
 
 import {fetchGet,fetchJsonPost} from '../../constants/Fetch'
 
+
 class ActionClass{
     getAll(Action){
         return dispatch => {
@@ -17,15 +18,11 @@ class ActionClass{
         }
     }
 
-    /**
-     * @param {object} Action
-     * @param {object} data
-     * @return {object}
-     */
-    create(Action,data){
+    create(Action,data,cb){
         return dispatch => {
             return fetchJsonPost(Action.route,data,function(json) {
-                console.log('json', json);
+                console.log('create', json);
+                cb && cb();
                 dispatch({
                     type: Action,
                     data: json.data
@@ -34,10 +31,11 @@ class ActionClass{
         }
     }
 
-    edit(Action,data){
+    edit(Action,data,cb){
         return dispatch => {
             return fetchJsonPost(Action.route,data,function(json) {
-                console.log('json', json);
+                console.log('edit', json);
+                cb && cb();
                 dispatch({
                     type: Action,
                     data: data

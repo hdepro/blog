@@ -4,13 +4,15 @@
 
 import React from 'react'
 //import {connect} from 'react-redux'
+
 import {connect} from '../../../src/react-redux/Connect'
 import {CREATE_BLOG,GET_ALL_TAG,GET_BLOG,EDIT_BLOG} from '../../constants/Actions'
 import {Actions} from '../actions/index'
 import './scss/style.scss'
 
-import {Form, Select, Input, Button} from 'antd'
+import {Form, Select, Input, Button,message} from 'antd'
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 class CreateBlog extends React.Component{
     constructor(props){
@@ -31,22 +33,28 @@ class CreateBlog extends React.Component{
     }
     add(e){
         e.preventDefault();
+        const callback = ()=>{
+            Debugger.log("创建博客成功");
+            message.success("创建博客成功",2,()=>{
+                this.props.history.push("/");
+            });
+        };
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received create blog values of form: ', values);
                 if(this.state.type) {
                     values._id = this.props.match.params._id;
-                    this.props.dispatch(Actions.edit(EDIT_BLOG,values));
+                    this.props.dispatch(Actions.edit(EDIT_BLOG,values,callback));
                 }
-                else this.props.dispatch(Actions.create(CREATE_BLOG,values));
+                else this.props.dispatch(Actions.create(CREATE_BLOG,values,callback));
             }
         });
     }
     handleTextAreaChange= (e) =>{
         let refer = this.refer.refs.input;
         refer.value = e.target.value;
-        console.log(e.target.offsetHeight,refer.scrollHeight,refer.offsetHeight);
-        e.target.rows = parseInt((refer.scrollHeight - refer.offsetHeight)/17)+10;
+        //console.log(e.target.offsetHeight,refer.scrollHeight,refer.offsetHeight);
+        e.target.rows = parseInt((refer.scrollHeight - refer.offsetHeight)/17)+20;
     };
     render(){
         const { getFieldDecorator } = this.props.form;
@@ -67,7 +75,7 @@ class CreateBlog extends React.Component{
                             rules: [{ required: true, message: 'Please input your title!' }],
                             initialValue:c_blog.title
                         })(
-                            <Input placeholder="在此输入标题" ref={(input) => this.title = input}/>
+                            <Input placeholder="在此输入标题" ref={(input) => this.title = input} size="large"/>
                         )}
                     </FormItem>
                     <FormItem
@@ -77,7 +85,7 @@ class CreateBlog extends React.Component{
                             rules: [{ required: true, message: 'Please select your tag!' }],
                             initialValue:c_blog.tagId
                         })(
-                            <Select placeholder="Select a option and change input text above">
+                            <Select placeholder="Select a tag">
                                 {
                                     c_tag_list.map(tag => <Option value={tag._id}>{tag.name}</Option>)
                                 }
@@ -90,7 +98,7 @@ class CreateBlog extends React.Component{
                             initialValue:c_blog.content,
                             onChange:this.handleTextAreaChange
                         })(
-                            <Input rows={10} type="textarea" placeholder="" />
+                            <Input rows={20} type="textarea" placeholder="" />
                         )}
                     </FormItem>
                     <FormItem>
