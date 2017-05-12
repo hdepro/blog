@@ -8,7 +8,7 @@ let Tag = require("../models").Tag;
 let Message = require("../common/message");
 
 const mdToHtml = (content,length) => {
-    return markdown.toHTML(content.split(/\n+/).slice(0,length).join("\n\n"));
+    return markdown.toHTML(content.split(/\n/).slice(0,length).join("  \n"));
 };
 
 exports.getAll = function(req,res,next){
