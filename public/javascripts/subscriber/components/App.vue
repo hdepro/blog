@@ -1,7 +1,9 @@
 
 <template>
     <div id="app">
-        <sidebar></sidebar>
+        <div id="side">
+            <sidebar></sidebar>
+        </div>
         <div id="content">
             <router-view></router-view>
         </div>
@@ -19,11 +21,16 @@
 </script>
 
 <style>
+    #side{
+        display:inline-block;
+        width:12%;
+        height:100%;
+    }
     #content{
         display:inline-block;
-        vertical-align:top;
+        width:82%;
         margin-left:3%;
         margin-top:20px;
-        width:84%;
+        vertical-align:top;
     }
 </style>

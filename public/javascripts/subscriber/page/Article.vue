@@ -33,7 +33,9 @@
         font-weight:500;
     }
     #article>.content{
-        line-height:2em;
+        padding:30px;
+        line-height:2.4em;
         font-size:16px;
+        background-color:#f9f9f9;
     }
 </style>

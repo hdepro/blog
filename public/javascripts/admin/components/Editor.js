@@ -47,8 +47,12 @@ export class ShortCut extends React.Component{
         e.preventDefault();
         let {name} = e.target;
         switch(name){
+            case "code":
+                let value = "```js\n\n```";
+                this.props.click(value);
+                break;
             case "link":
-                let value = "[]()";
+                value = "[]()";
                 this.props.click(value);
                 break;
             case "image":
@@ -119,6 +123,7 @@ export class ShortCut extends React.Component{
         return(
             <div className="shortcut">
                 <div onClick={this.handleClick} >
+                    <img src="/images/iconfont/code.png" name="code"/>
                     <img src="/images/iconfont/链接.png" name="link"/>
                     <img src="/images/iconfont/图片.png" name="image"/>
                 </div>

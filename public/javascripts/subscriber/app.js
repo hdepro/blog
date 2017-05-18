@@ -7,10 +7,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import App from './components/App.vue'
-import Home from './components/Home.vue'
-import Article from './components/Article.vue'
-import Tag from './components/Tag.vue'
-import Filing from './components/Filing.vue'
+import Home from './page/Home.vue'
+import Article from './page/Article.vue'
+import Tag from './page/Tag.vue'
+import Filing from './page/Filing.vue'
+import Search from './page/Search.vue'
 
 import store from './store'
 
@@ -24,6 +25,7 @@ const router = new VueRouter({
         { path: '/article/:_id', component: Article,props:true },
         { path: '/filing', component: Filing },
         { path: '/tag', component: Tag },
+        { path: '/search', component: Search },
         { path: '/logout',
             beforeEnter (to, from, next) {
                 next('/')

@@ -9,7 +9,7 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="/filing"><img src="/images/iconfont/归档.png"/>
+                <router-link to="filing"><img src="/images/iconfont/归档.png"/>
                     归档
                 </router-link>
             </li>
@@ -21,7 +21,7 @@
         </ul>
         <p>
             <a href="https://github.com/hdepro"><img src="/images/iconfont/github.png"/></a>
-            <router-link to="/"><img src="/images/iconfont/search.png"/></router-link>
+            <router-link to="search"><img src="/images/iconfont/search.png"/></router-link>
         </p>
     </div>
 </template>
@@ -34,9 +34,9 @@
 
 <style scoped>
     #sidebar{
-        display:inline-block;
-        height:100%;
+        position:fixed;
         width:12%;
+        height:100%;
         color:#ddd;
         background:#2a3542;
     }
@@ -60,7 +60,7 @@
         color:#ddd;
         text-decoration: none;
     }
-    a.router-link-exact-active, li.router-link-exact-active a {
+    .menu a.router-link-exact-active, li.router-link-exact-active a {
         background: #35404d;
     }
     .menu>li>a:hover{

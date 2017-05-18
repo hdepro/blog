@@ -6,7 +6,7 @@
 
 <script>
     import { mapGetters, mapActions } from 'vuex'
-    import ArtItem from './ArticleItem.vue'
+    import ArtItem from '../components/ArticleItem.vue'
 
     export default {
         name:'home',
