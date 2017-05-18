@@ -7,10 +7,13 @@ import React from 'react'
 import {BrowserRouter,Router,Route} from 'react-router-dom'
 
 import App from './App'
-import CreateBlog from './CreateBlog'
+import CreateBlog from '../containers/CreateBlog'
 import Blog from '../containers/Blog'
 import Tag from '../containers/Tag'
 import Home from '../containers/Home'
+
+import './scss/style.scss'
+import '../containers/scss/style.scss'
 
 // export const route =(
 //     <Router history={browserHistory}>
@@ -22,7 +25,7 @@ import Home from '../containers/Home'
 // );
 
 export const route =(
-    <BrowserRouter basename="/admin/home">
+    <BrowserRouter basename="/admin/page">
         <App>
             <Route exact path="/" component={Home}/>
             <Route path="/blog/:_id" component={Blog}/>

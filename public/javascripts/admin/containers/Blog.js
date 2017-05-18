@@ -5,10 +5,8 @@
 import React from 'react'
 //import {connect} from 'react-redux'
 import {connect} from '../../../src/react-redux/Connect'
-import {GET_BLOG} from '../../constants/Actions'
+import {GET_BLOG} from '../actions/action-types'
 import {Actions} from '../actions/index'
-
-import {markdown} from 'markdown'
 
 class Blog extends React.Component{
     constructor(props){

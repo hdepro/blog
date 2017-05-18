@@ -21,7 +21,7 @@ export const logger3 = store => next => action => {
     console.log("logger3 next state",store.getState());
 };
 
-export const Debugger = {};
+export let Debugger = {};
 Debugger.log = function(...args){
     try{
         if (process.env.NODE_ENV !== 'production') {

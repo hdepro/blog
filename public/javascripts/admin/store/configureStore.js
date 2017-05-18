@@ -5,11 +5,11 @@
 //import {createStore} from 'redux'
 //import {applyMiddleware} from 'redux'
 
-import {createStore} from '../../src/redux/CreateStore'
-import {applyMiddleware} from '../../src/redux/ApplyMiddleware'
+import {createStore} from '../../../src/redux/CreateStore'
+import {applyMiddleware} from '../../../src/redux/ApplyMiddleware'
 
-import {logger,Debugger} from '../constants/Logger'
-import {reduxThunk} from '../../src/redux/ReduxThunk'
+import {logger,Debugger} from '../../constants/Logger'
+import {reduxThunk} from '../../../src/redux/ReduxThunk'
 
 export function configureStore(rootReducer,initialState){
     let store;

@@ -2,20 +2,28 @@
  * Created by heben on 2017/4/27.
  */
 let markdown = require('markdown').markdown;
+let marked = require('marked');
+
+// let str = "aaaaaaaaaa  \nbbbbbbbbbbbbbbbbb  \nccccccccccccccccc<br>ddddddd";
+// console.log(marked(str));
+// console.log(markdown.toHTML(str));
 
 let Blog = require("../models").Blog;
 let Tag = require("../models").Tag;
 let Message = require("../common/message");
+let blogState = require('../common/constant').blogState;
 
 const mdToHtml = (content,length) => {
-    return markdown.toHTML(content.split(/\n/).slice(0,length).join("  \n"));
+    return marked(content.split(/\n/).slice(0,length).join("  \n"));
 };
 
 exports.getAll = function(req,res,next){
-    Blog.getAll(function(err,blogs){
+    let state;
+    if(!req.session.user) state = blogState.open;
+    Blog.getAll(state,function(err,blogs){
         if(err) console.log("Blog getAll error",err);
         else{
-            //console.log("getAll blogs",blogs);
+            console.log("getAll blogs",blogs);
             let data = blogs.map(blog => {
                 let data = blog.toObject();
                 data.contentHtml = mdToHtml(blog.content,6);
@@ -100,6 +108,16 @@ exports.getByTagId = function(req,res,next){
         else{
             let obj = Object.assign(Message.success,{data:doc});
             res.json(obj);
+        }
+    })
+};
+
+exports.changeState = function(req,res){
+    let {_id,state} = req.query;
+    Blog.update(_id,state,function(err,doc){
+        if(err) console.log("Blog changeState err",err);
+        else {
+            res.json(Message.success)
         }
     })
 };

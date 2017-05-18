@@ -31,8 +31,9 @@ exports.edit = function(data,callback){
     });
 };
 
-exports.getAll = function(callback){
-    Blog.find(callback);
+exports.getAll = function(state,callback){
+    if(state) Blog.find({state},callback);
+    else Blog.find(callback);
 };
 
 exports.delete = function(_id,callback){
@@ -49,4 +50,8 @@ exports.getByTagId = function(tagId,callback){
 
 exports.count = function(tagId,callback){
     return Blog.count({tagId},callback);
+};
+
+exports.changeState = function(_id,state,callback){
+    Blog.update({_id},{state},callback)
 };

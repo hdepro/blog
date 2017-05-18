@@ -8,7 +8,7 @@ import ReactDOM from'react-dom'
 //import {Provider} from 'react-redux'
 import {Provider} from '../../src/react-redux/Provider'
 
-import {configureStore} from '../constants/ConfigureStore'
+import {configureStore} from './store/ConfigureStore'
 
 import rootReducer from './reducers/index'
 import {route} from './components/Router'

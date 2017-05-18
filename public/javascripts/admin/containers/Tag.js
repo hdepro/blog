@@ -5,9 +5,8 @@
 import React from 'react'
 //import {connect} from 'react-redux'
 import {connect} from '../../../src/react-redux/Connect'
-import {CREATE_TAG,GET_ALL_TAG,EDIT_TAG,DELETE_TAG} from '../../constants/Actions'
+import {CREATE_TAG,GET_ALL_TAG,EDIT_TAG,DELETE_TAG} from '../actions/action-types'
 import {Actions} from '../actions/index'
-import './scss/style.scss'
 
 import {Tag,Input,Form,Button,Badge,message} from 'antd'
 const FormItem = Form.Item;

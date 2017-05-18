@@ -1,3 +1,15 @@
+.create-blog-form{
+  width:80%;
+  margin:auto;
+  .ant-form-text{
+    font-size:20px;
+  }
+  input,.ant-select-selection,textarea{
+    height:40px;
+    font-size:18px;
+  }
+}
+
 .add-tag-form{
   display:inline;
   margin-left:20px;

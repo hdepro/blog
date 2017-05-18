@@ -15,6 +15,7 @@ export const DELETE_BLOG = {type:Symbol("DELETE_BLOG"),route:"/blog/delete"};
 export const GET_ALL_BLOG = {type:Symbol("GET_ALL_BLOG"),route:"/blog/getAll"};
 export const GET_BLOG = {type:Symbol("GET_BLOG"),route:"/blog/getById"};
 export const EDIT_BLOG = {type:Symbol("EDIT_BLOG"),route:"/blog/edit"};
+export const CHANGE_BLOG_STATE = {type:Symbol("CHANGE_BLOG_STATE"),route:"/blog/changeState"};
 
 
 export const CREATE_TAG = {type:Symbol("CREATE_TAG"),route:"/tag/create"};

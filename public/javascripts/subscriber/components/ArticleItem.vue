@@ -20,7 +20,6 @@
 
 <style scoped>
     .article-item{
-        height:200px;
         width:90%;
         margin:20px 0;
         border-radius: 10px;

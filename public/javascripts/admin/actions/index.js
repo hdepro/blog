@@ -66,6 +66,17 @@ class ActionClass{
             })
         }
     }
+    changeState(Action,_id,state){
+        return dispatch => {
+            return fetchGet(Action.route+`?_id=${_id}&state=${state}`, function (json) {
+                console.log('json', json);
+                dispatch({
+                    type: Action,
+                    data: {_id,state}
+                })
+            })
+        }
+    }
 }
 
 export const Actions = new ActionClass();

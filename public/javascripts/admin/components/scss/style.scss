@@ -1,11 +1,52 @@
-.create-blog-form{
-  width:80%;
-  margin:auto;
-  .ant-form-text{
-    font-size:20px;
+.item{
+  width:90%;
+  height:260px;
+  padding:10px 30px;
+  border-radius:10px;
+  overflow: hidden;
+  background:#fff;
+  .header{
+    border-bottom:1px solid #ddd;
+    overflow:hidden;
+    .title{
+      font-size:25px;
+      font-weight:500;
+      width:80%;
+    }
+    .extra{
+      width:20%;
+      float:right;
+      margin-bottom:10px;
+      &>p{
+        font-size:16px;
+        margin-bottom:10px;
+      }
+    }
   }
-  input,.ant-select-selection,textarea{
-    height:40px;
-    font-size:18px;
+  .content{
+    font-size:16px;
+    &:after{
+      content:"点击阅读更多>>";
+      color:green;
+    }
+  }
+}
+
+.editor{
+  .header{
+    display:inline-block;
+    button{
+      cursor:pointer;
+      padding:2px 4px;
+    }
+  }
+
+  .shortcut{
+    display:inline-block;
+    img{
+      cursor:pointer;
+      height:26px;
+      vertical-align:middle;
+    }
   }
 }

@@ -20,8 +20,8 @@ module.exports = {
     },
   resolve: {
       alias: {
-          'react': path_React,
-          'react-dom': path_ReactDOM,
+          //'react': path_React,
+          //'react-dom': path_ReactDOM,
           'babel-polyfill':path_polyfill,
           //'react-router':path_ReactRouter,
       },

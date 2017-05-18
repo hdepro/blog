@@ -64,7 +64,7 @@ window.Debugger = Debugger;
 
 function loginFetchPost(data){
     fetchJsonPost("/admin/login",data,function(json){
-        location.assign("/admin");
+        location.assign("/admin/page");
     });
 }
 

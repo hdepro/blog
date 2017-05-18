@@ -19,11 +19,13 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('port', process.env.PORT || 3000);
 
 //设置静态文件访问
-app.use(express.static(path.join(__dirname, 'public'),{maxAge:50000}));
+app.use(express.static(path.join(__dirname, 'public'),{maxAge:50000}))   ;
+app.use(express.static(path.join(__dirname, 'uploads'),{maxAge:50000}));
 
 // middleware
-//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use(session({
     resave: false, // don't save session if unmodified
     saveUninitialized: false, // don't create session until something stored
