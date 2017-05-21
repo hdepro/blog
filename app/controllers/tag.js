@@ -68,7 +68,7 @@ exports.create = function(req,res,next){
         if(err) console.log("Tag create error",err);
         else{
             console.log("create tag",tag);
-            res.json(Message.success);
+            res.json(Object.assign(Message.success,{data:tag}));
         }
     })
 };
