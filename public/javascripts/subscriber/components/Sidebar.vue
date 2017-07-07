@@ -4,24 +4,41 @@
         <li><img src="/images/positive.jpg"/></li>
         <ul class="menu">
             <li>
-                <router-link to="/"><img src="/images/iconfont/主页.png"/>
+                <router-link to="/">
+                    <svg class="icon" aria-hidden="">
+                        <use xlink:href="#icon-shouye"></use>
+                    </svg>
                     首页
                 </router-link>
             </li>
             <li>
-                <router-link to="filing"><img src="/images/iconfont/归档.png"/>
+                <router-link to="filing">
+                    <svg class="icon" aria-hidden="">
+                        <use xlink:href="#icon-guidang"></use>
+                    </svg>
                     归档
                 </router-link>
             </li>
             <li>
-                <router-link to="tag"><img src="/images/iconfont/biaoqian.png"/>
+                <router-link to="tag">
+                    <svg class="icon" aria-hidden="">
+                        <use xlink:href="#icon-biaoqian"></use>
+                    </svg>
                     标签
                 </router-link>
             </li>
         </ul>
         <p>
-            <a href="https://github.com/hdepro"><img src="/images/iconfont/github.png"/></a>
-            <router-link to="search"><img src="/images/iconfont/search.png"/></router-link>
+            <a href="https://github.com/hdepro">
+                <svg class="icon" aria-hidden="">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            </a>
+            <router-link to="search">
+                <svg class="icon sousuo" aria-hidden="">
+                    <use xlink:href="#icon-sousuo2"></use>
+                </svg>
+            </router-link>
         </p>
     </div>
 </template>
@@ -37,8 +54,9 @@
         position:fixed;
         width:12%;
         height:100%;
-        color:#ddd;
-        background:#2a3542;
+        color:#fff;
+        background:#333744;
+        font-size:13px;
     }
     #sidebar>li{
         text-align:center;
@@ -57,27 +75,32 @@
     .menu>li>a{
         display:block;
         padding-left:2vw;
-        color:#ddd;
+        color:#fff;
         text-decoration: none;
     }
+    .icon{
+        margin-right:8px;
+        width: 1.2em;
+        height: 1.2em;
+        vertical-align: -0.15em;
+        fill: #fff;
+        overflow: hidden;
+    }
     .menu a.router-link-exact-active, li.router-link-exact-active a {
-        background: #35404d;
+        background: #42485b;
     }
     .menu>li>a:hover{
-        background:#35404d;
-    }
-    .menu a>img{
-        height:1.2em;
-        vertical-align:middle;
+        background:#42485b;
     }
 
     #sidebar>p{
         margin:30px 2vw;
     }
-    #sidebar>p>a{
-        margin-right:15px;
+    #sidebar>p .icon{
+        width: 1.5em;
+        height: 1.5em;
     }
-    #sidebar>p img{
-        height:1.2em;
+    #sidebar>p .icon.sousuo{
+        margin-left:6px;
     }
 </style>

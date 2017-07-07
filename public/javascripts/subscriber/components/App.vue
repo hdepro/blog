@@ -21,6 +21,9 @@
 </script>
 
 <style>
+    #app{
+        background:#eaedf1;
+    }
     #side{
         display:inline-block;
         width:12%;
