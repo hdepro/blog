@@ -6,7 +6,7 @@ let express = require("express");
 let Auth = require("./app/controllers/auth");
 let Blog = require("./app/controllers/blog");
 let Tag = require("./app/controllers/tag");
-let File = require("./app/controllers/File");
+let File = require("./app/controllers/file");
 let User = require("./app/controllers/user");
 
 let route = express.Router();
