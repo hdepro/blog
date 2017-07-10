@@ -12,7 +12,7 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="filing">
+                <router-link to="/filing">
                     <svg class="icon" aria-hidden="">
                         <use xlink:href="#icon-guidang"></use>
                     </svg>
@@ -20,11 +20,19 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="tag">
+                <router-link to="/tag">
                     <svg class="icon" aria-hidden="">
                         <use xlink:href="#icon-biaoqian"></use>
                     </svg>
                     标签
+                </router-link>
+            </li>
+            <li>
+                <router-link to="/commend">
+                    <svg class="icon" aria-hidden="">
+                        <use xlink:href="#icon-tuijian1"></use>
+                    </svg>
+                    推荐
                 </router-link>
             </li>
         </ul>
@@ -34,9 +42,9 @@
                     <use xlink:href="#icon-github"></use>
                 </svg>
             </a>
-            <router-link to="search">
+            <router-link to="/search">
                 <svg class="icon sousuo" aria-hidden="">
-                    <use xlink:href="#icon-sousuo2"></use>
+                    <use xlink:href="#icon-sousuo1"></use>
                 </svg>
             </router-link>
         </p>

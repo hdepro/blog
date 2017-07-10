@@ -6,6 +6,8 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import './styles/style.scss'
+
 import App from './components/App.vue'
 import Home from './page/Home.vue'
 import Article from './page/Article.vue'

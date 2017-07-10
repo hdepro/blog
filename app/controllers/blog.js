@@ -93,8 +93,14 @@ exports.getById = function(req,res,next){
                     let data = blog.toObject();
                     data.contentHtml = mdToHtml(blog.content);
                     data.tagName = tag.name;
-                    let obj = Object.assign(Message.success,{data});
-                    res.json(obj);
+                    Blog.getAll(blogState.open,function(err,blogs){
+                        let index = blogs.findIndex(b => b._id == _id);
+                        console.log("blogs",blogs,index);
+                        data.prev = blogs[index-1];
+                        data.next = blogs[index+1];
+                        let obj = Object.assign(Message.success,{data});
+                        res.json(obj);
+                    });
                 }
             });
         }
@@ -114,7 +120,7 @@ exports.getByTagId = function(req,res,next){
 
 exports.changeState = function(req,res){
     let {_id,state} = req.query;
-    Blog.update(_id,state,function(err,doc){
+    Blog.changeState(_id,state,function(err,doc){
         if(err) console.log("Blog changeState err",err);
         else {
             res.json(Message.success)

@@ -32,8 +32,9 @@ exports.edit = function(data,callback){
 };
 
 exports.getAll = function(state,callback){
-    if(state) Blog.find({state},callback);
-    else Blog.find(callback);
+    //if(state) Blog.find({state},null,{sort:{createTime:-1}},callback);
+    if(state) Blog.find({state}).sort({createTime:-1}).exec(callback);
+    else Blog.find().sort({createTime:-1}).exec(callback);
 };
 
 exports.delete = function(_id,callback){

@@ -1,0 +1,21 @@
+
+label{
+  display:inline-block;
+  width:100px;
+}
+label.required{
+  color:red;
+}
+input,textarea{
+  width:300px;
+  margin-top:20px;
+  padding:6px 8px;
+  border:1px solid #ccc;
+}
+button{
+  cursor:pointer;
+  padding:8px 15px;
+  border:1px solid #fff;
+  background:#42b983;
+  color:#fff;
+}

@@ -2,7 +2,7 @@
     <div id="search">
         <form>
             <input type="text"/>
-            <input type="submit" value="搜索"/>
+            <button>搜索</button>
         </form>
     </div>
 </template>

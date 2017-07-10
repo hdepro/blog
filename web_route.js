@@ -20,7 +20,7 @@ route.post('/admin/login',Auth.loginSubmit);
 route.post("/blog/create",Auth.restrict,Blog.create);
 route.get("/blog/delete/:_id",Auth.restrict,Blog.delete);
 route.post("/blog/edit",Auth.restrict,Blog.edit);
-route.post("/blog/changeState",Auth.restrict,Blog.changeState);
+route.get("/blog/changeState",Auth.restrict,Blog.changeState);
 route.get("/blog/getAll",Blog.getAll);
 route.get("/blog/getById/:_id",Blog.getById);
 
