@@ -11,10 +11,10 @@ const handleDate = (timestamp) => {
 
 export default {
     [types.GET_ALL_ARTICLE.action](state,{data}){
-        //state.articles = data;
-        data.forEach((art,index) => {
+        state.articles = data;
+        /*data.forEach((art,index) => {
             Vue.set(state.articles,index,art);
-        });
+        });*/
     },
 
     [types.GET_ALL_TAG.action](state,{data}){
@@ -39,5 +39,9 @@ export default {
         }
         state.articles = res;
         console.log("res",res);
+    },
+
+    [types.GET_ARTICLE_COMMENT.action](state,{data}){
+        state.comments = data;
     },
 }

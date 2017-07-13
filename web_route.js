@@ -7,6 +7,7 @@ let Auth = require("./app/controllers/auth");
 let Blog = require("./app/controllers/blog");
 let Tag = require("./app/controllers/tag");
 let File = require("./app/controllers/file");
+let Comment = require("./app/controllers/comment");
 let User = require("./app/controllers/user");
 
 let route = express.Router();
@@ -29,6 +30,11 @@ route.get("/tag/delete/:_id",Auth.restrict,Tag.delete);
 route.post("/tag/edit",Auth.restrict,Tag.edit);
 route.get("/tag/getAll",Tag.getAll);
 route.get("/tag/getById/:_id",Tag.getById);
+
+route.post("/comment/create",Comment.create);
+route.get("/comment/delete/:_id",Auth.restrict,Comment.delete);
+route.get("/comment/getByBlogId",Comment.getByBlogId);
+route.get("/comment/getById",Comment.getById);
 
 
 let multer = require('multer');

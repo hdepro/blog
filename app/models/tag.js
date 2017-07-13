@@ -37,4 +37,7 @@ exports.getById = function(_id,callback){
     Tag.findById(_id,callback);
 };
 
+exports.getByName = function(name,callback){
+    Tag.findOne({name},callback);
+};
 

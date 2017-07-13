@@ -35,7 +35,6 @@ function showMsg(msg){
 export function fetchGet(url,successFunc){
     fetch(url, {credentials:'include'})
         .then(response => {
-            console.log("response");
             return response.json();
         })
         .then(checkLogin)

@@ -375,7 +375,7 @@ module.exports = function(it){
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(50)
+var IObject = __webpack_require__(51)
   , defined = __webpack_require__(20);
 module.exports = function(it){
   return IObject(defined(it));
@@ -409,7 +409,7 @@ module.exports = function(NAME, exec){
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE            = __webpack_require__(51)
+var pIE            = __webpack_require__(52)
   , createDesc     = __webpack_require__(31)
   , toIObject      = __webpack_require__(15)
   , toPrimitive    = __webpack_require__(23)
@@ -7665,7 +7665,7 @@ module.exports = function(KEY, exec){
 // 5 -> Array#find
 // 6 -> Array#findIndex
 var ctx      = __webpack_require__(27)
-  , IObject  = __webpack_require__(50)
+  , IObject  = __webpack_require__(51)
   , toObject = __webpack_require__(9)
   , toLength = __webpack_require__(8)
   , asc      = __webpack_require__(223);
@@ -7758,7 +7758,7 @@ if(__webpack_require__(6)){
     , toPrimitive         = __webpack_require__(23)
     , has                 = __webpack_require__(11)
     , same                = __webpack_require__(107)
-    , classof             = __webpack_require__(52)
+    , classof             = __webpack_require__(53)
     , isObject            = __webpack_require__(4)
     , toObject            = __webpack_require__(9)
     , isArrayIter         = __webpack_require__(83)
@@ -8992,50 +8992,6 @@ exports.RETURN = RETURN;
 
 /***/ }),
 /* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(19);
-module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
-  return cof(it) == 'String' ? it.split('') : Object(it);
-};
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports) {
-
-exports.f = {}.propertyIsEnumerable;
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(19)
-  , TAG = __webpack_require__(5)('toStringTag')
-  // ES3 wrong here
-  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function(it, key){
-  try {
-    return it[key];
-  } catch(e){ /* empty */ }
-};
-
-module.exports = function(it){
-  var O, T, B;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
-    // builtinTag case
-    : ARG ? cof(O)
-    // ES3 arguments fallback
-    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-};
-
-/***/ }),
-/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9849,6 +9805,50 @@ var index_esm = {
 
 
 /***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __webpack_require__(19);
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __webpack_require__(19)
+  , TAG = __webpack_require__(5)('toStringTag')
+  // ES3 wrong here
+  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
+
+// fallback for IE11 Script Access Denied error
+var tryGet = function(it, key){
+  try {
+    return it[key];
+  } catch(e){ /* empty */ }
+};
+
+module.exports = function(it){
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+/***/ }),
 /* 54 */
 /***/ (function(module, exports) {
 
@@ -10496,7 +10496,7 @@ module.exports = function(object, index, value){
 /* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof   = __webpack_require__(52)
+var classof   = __webpack_require__(53)
   , ITERATOR  = __webpack_require__(5)('iterator')
   , Iterators = __webpack_require__(47);
 module.exports = __webpack_require__(26).getIteratorMethod = function(it){
@@ -11090,7 +11090,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, "\n#article > h2[data-v-1ace19ff] {\n  margin-bottom: 20px;\n  text-align: center;\n  font-weight: 500;\n}\n#article > .content[data-v-1ace19ff] {\n  padding: 20px;\n  line-height: 2.4em;\n  font-size: 16px;\n  background-color: #f9f9f9;\n}\n#article > .footer[data-v-1ace19ff] {\n  margin: 20px 0;\n  padding: 15px 0;\n  border-top: 1px solid #ddd;\n  border-bottom: 1px solid #ddd;\n}\n", ""]);
+exports.push([module.i, "\n#article > h2[data-v-1ace19ff] {\n  margin-bottom: 20px;\n  text-align: center;\n  font-weight: 500;\n}\n#article > .content[data-v-1ace19ff] {\n  padding: 20px;\n  line-height: 2.4em;\n  font-size: 16px;\n  background-color: #f9f9f9;\n}\n#article > .footer[data-v-1ace19ff] {\n  margin: 20px 0;\n  padding: 15px 0;\n  border-top: 1px solid #ddd;\n  border-bottom: 1px solid #ddd;\n}\niframe[data-v-1ace19ff] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -11132,7 +11132,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.search-result{\n    margin-top:20px;\n}\n.count{\n    margin:10px;\n    font-size:20px;\n    color:#e96900;\n}\n.articles{\n    margin-top:10px;\n}\n.title{\n    padding:4px 10px;\n    color:#42b983;\n}\n", ""]);
 
 // exports
 
@@ -11225,9 +11225,9 @@ module.exports.f = function getOwnPropertyNames(it){
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys  = __webpack_require__(38)
   , gOPS     = __webpack_require__(57)
-  , pIE      = __webpack_require__(51)
+  , pIE      = __webpack_require__(52)
   , toObject = __webpack_require__(9)
-  , IObject  = __webpack_require__(50)
+  , IObject  = __webpack_require__(51)
   , $assign  = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -11374,7 +11374,7 @@ module.exports = function(iterator, fn, value, entries){
 
 var aFunction = __webpack_require__(14)
   , toObject  = __webpack_require__(9)
-  , IObject   = __webpack_require__(50)
+  , IObject   = __webpack_require__(51)
   , toLength  = __webpack_require__(8);
 
 module.exports = function(that, callbackfn, aLen, memo, isRight){
@@ -11834,7 +11834,7 @@ module.exports = function(that, maxLength, fillString, left){
 
 var getKeys   = __webpack_require__(38)
   , toIObject = __webpack_require__(15)
-  , isEnum    = __webpack_require__(51).f;
+  , isEnum    = __webpack_require__(52).f;
 module.exports = function(isEntries){
   return function(it){
     var O      = toIObject(it)
@@ -11854,7 +11854,7 @@ module.exports = function(isEntries){
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var classof = __webpack_require__(52)
+var classof = __webpack_require__(53)
   , from    = __webpack_require__(128);
 module.exports = function(NAME){
   return function toJSON(){
@@ -11894,6 +11894,7 @@ var GET_ALL_ARTICLE = exports.GET_ALL_ARTICLE = { action: 'GET_ALL_ARTICLE', rou
 var GET_ARTICLE = exports.GET_ARTICLE = { action: 'GET_ARTICLE', route: '/blog/getById' };
 var GET_ALL_TAG = exports.GET_ALL_TAG = { action: 'GET_ALL_TAG', route: '/tag/getAll' };
 var GET_ALL_FILING_ARTICLE = exports.GET_ALL_FILING_ARTICLE = { action: 'GET_ALL_FILING_ARTICLE', route: '/blog/getAll' };
+var GET_ARTICLE_COMMENT = exports.GET_ARTICLE_COMMENT = { action: 'GET_ARTICLE_COMMENT', route: '/comment/getByBlogId' };
 
 /***/ }),
 /* 130 */
@@ -11929,23 +11930,23 @@ var _Home = __webpack_require__(332);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Article = __webpack_require__(340);
+var _Article = __webpack_require__(341);
 
 var _Article2 = _interopRequireDefault(_Article);
 
-var _Tag = __webpack_require__(344);
+var _Tag = __webpack_require__(345);
 
 var _Tag2 = _interopRequireDefault(_Tag);
 
-var _Filing = __webpack_require__(348);
+var _Filing = __webpack_require__(349);
 
 var _Filing2 = _interopRequireDefault(_Filing);
 
-var _Search = __webpack_require__(352);
+var _Search = __webpack_require__(353);
 
 var _Search2 = _interopRequireDefault(_Search);
 
-var _store = __webpack_require__(356);
+var _store = __webpack_require__(357);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -12345,7 +12346,7 @@ if(!USE_NATIVE){
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f   = $defineProperty;
   __webpack_require__(41).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(51).f  = $propertyIsEnumerable;
+  __webpack_require__(52).f  = $propertyIsEnumerable;
   __webpack_require__(57).f = $getOwnPropertySymbols;
 
   if(DESCRIPTORS && !__webpack_require__(37)){
@@ -12453,7 +12454,7 @@ module.exports = function(object, el){
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(38)
   , gOPS    = __webpack_require__(57)
-  , pIE     = __webpack_require__(51);
+  , pIE     = __webpack_require__(52);
 module.exports = function(it){
   var result     = getKeys(it)
     , getSymbols = gOPS.f;
@@ -12654,7 +12655,7 @@ $export($export.S, 'Object', {setPrototypeOf: __webpack_require__(72).set});
 "use strict";
 
 // 19.1.3.6 Object.prototype.toString()
-var classof = __webpack_require__(52)
+var classof = __webpack_require__(53)
   , test    = {};
 test[__webpack_require__(5)('toStringTag')] = 'z';
 if(test + '' != '[object z]'){
@@ -13877,7 +13878,7 @@ var $export   = __webpack_require__(0)
   , arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(50) != Object || !__webpack_require__(21)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(51) != Object || !__webpack_require__(21)(arrayJoin)), 'Array', {
   join: function join(separator){
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
@@ -14418,7 +14419,7 @@ __webpack_require__(62)('split', 2, function(defined, SPLIT, $split){
 var LIBRARY            = __webpack_require__(37)
   , global             = __webpack_require__(2)
   , ctx                = __webpack_require__(27)
-  , classof            = __webpack_require__(52)
+  , classof            = __webpack_require__(53)
   , $export            = __webpack_require__(0)
   , isObject           = __webpack_require__(4)
   , aFunction          = __webpack_require__(14)
@@ -22217,7 +22218,7 @@ var Component = __webpack_require__(35)(
   /* script */
   __webpack_require__(334),
   /* template */
-  __webpack_require__(339),
+  __webpack_require__(340),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -22285,25 +22286,21 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vuex = __webpack_require__(53);
+var _vuex = __webpack_require__(50);
 
 var _ArticleItem = __webpack_require__(335);
 
 var _ArticleItem2 = _interopRequireDefault(_ArticleItem);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Util = __webpack_require__(339);
 
-//
-//
-//
-//
-//
-//
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
     name: 'home',
     created: function created() {
-        this.$store.dispatch('getAllArticle');
+        var tag = _Util.Util.parseUrl(location.search).get("tag");
+        this.$store.dispatch('getAllArticle', { tag: tag });
     },
 
     computed: (0, _vuex.mapGetters)({
@@ -22313,7 +22310,12 @@ exports.default = {
     components: {
         ArtItem: _ArticleItem2.default
     }
-};
+}; //
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 335 */
@@ -22450,6 +22452,40 @@ if (true) {
 /* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+/**
+ * Created by heben.hb on 2017/7/12.
+ */
+
+var Util = exports.Util = {};
+//const Util = {};
+
+Util.parseUrl = function (url) {
+    var index = url.indexOf("?");
+    var paramObj = new Map();
+    if (url.slice(index + 1).length < 3) return paramObj;
+    var paramArray = url.slice(index + 1).split("&");
+    var reg = /^([\S]+)=([\S]+)/;
+    paramArray.map(function (param) {
+        var match = param.match(reg);
+        paramObj.set(match[1], match[2]);
+    });
+    console.log("parseUrl paramObj:", paramObj);
+    return paramObj;
+};
+
+//Util.parseUrl("/ssl/sk?$%ass=1&bbb22=2");
+Util.parseUrl("");
+
+/***/ }),
+/* 340 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     attrs: {
@@ -22472,19 +22508,19 @@ if (true) {
 }
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(341)
+  __webpack_require__(342)
 }
 var Component = __webpack_require__(35)(
   /* script */
-  __webpack_require__(342),
-  /* template */
   __webpack_require__(343),
+  /* template */
+  __webpack_require__(344),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -22516,7 +22552,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -22542,7 +22578,7 @@ if(true) {
 }
 
 /***/ }),
-/* 342 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22552,12 +22588,46 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vuex = __webpack_require__(53);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _vuex = __webpack_require__(50);
 
 exports.default = {
     props: ['_id'],
     created: function created() {
         this.$store.dispatch('getArticle', this._id);
+        this.$store.dispatch('getArticleComment', this._id);
         this.prev_id = this._id;
     },
     beforeUpdate: function beforeUpdate() {
@@ -22566,40 +22636,29 @@ exports.default = {
             this.prev_id = this._id;
         }
     },
+    comment: function comment() {
+        console.log("comment");
+    },
 
     computed: (0, _vuex.mapGetters)({
-        article: 'getArticle'
+        article: 'getArticle',
+        comments: 'getArticleComment'
     }),
-    methods: (0, _vuex.mapActions)(['getArticle']),
+    methods: _extends({}, (0, _vuex.mapActions)(['getArticle']), {
+        comment: function comment(event) {
+            var blogId = document.querySelector("[name=blogId]").value;
+            var contact = document.querySelector("[name=contact]").value;
+            var nickname = document.querySelector("[name=nickname]").value;
+            var content = document.querySelector("[name=content]").value;
+            //event.preventDefault();
+            console.log("methods comment");
+        }
+    }),
     components: {}
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+};
 
 /***/ }),
-/* 343 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -22618,35 +22677,66 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "to": _vm.article.next ? _vm.article.next._id : ''
     }
-  }, [_vm._v("\n        " + _vm._s(_vm.article.next ? _vm.article.next.title : "") + "      >>\n        ")])], 1) : _vm._e(), _vm._v(" "), _vm._m(0)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "comment"
-  }, [_c('form', [_c('label', {
+  }, [_vm._v("\n        " + _vm._s(_vm.article.next ? _vm.article.next.title : "") + "      >>\n        ")])], 1) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "create-comment"
+  }, [_c('form', {
+    attrs: {
+      "target": "hide",
+      "method": "post",
+      "action": "/comment/create",
+      "onsubmit": ""
+    }
+  }, [_c('input', {
+    staticStyle: {
+      "display": "none"
+    },
+    attrs: {
+      "name": "blogId"
+    },
+    domProps: {
+      "value": _vm.article._id
+    }
+  }), _vm._v(" "), _c('label', {
     staticClass: "required"
   }, [_vm._v("昵称*")]), _vm._v(" "), _c('input', {
     attrs: {
-      "type": "text"
+      "type": "text",
+      "name": "nickname"
     }
   }), _c('br'), _vm._v(" "), _c('label', {
     staticClass: "required"
   }, [_vm._v("联系方式*")]), _vm._v(" "), _c('input', {
     attrs: {
-      "type": "text"
+      "type": "text",
+      "name": "contact"
     }
   }), _c('br'), _vm._v(" "), _c('label', {
     staticClass: "required"
   }, [_vm._v("评论*")]), _vm._v(" "), _c('textarea', {
     attrs: {
       "rows": "6",
-      "type": "text"
+      "type": "text",
+      "name": "content"
     }
   }), _c('br'), _vm._v(" "), _c('label', [_vm._v("备注")]), _vm._v(" "), _c('input', {
     attrs: {
-      "type": "text"
+      "type": "text",
+      "name": "remark"
     }
-  }), _c('br'), _c('br'), _vm._v(" "), _c('button', [_vm._v("发表评论")])])])
-}]}
+  }), _c('br'), _c('br'), _vm._v(" "), _c('button', {
+    on: {
+      "click": _vm.comment
+    }
+  }, [_vm._v("发表评论")])]), _vm._v(" "), _c('iframe', {
+    attrs: {
+      "name": "hide"
+    }
+  })], 1), _vm._v(" "), _c('ul', {
+    staticClass: "comments"
+  }, _vm._l((_vm.comments), function(comment) {
+    return _c('li', [_c('h5', [_vm._v(_vm._s(comment.nickname))])])
+  }))])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (true) {
   module.hot.accept()
@@ -22656,19 +22746,19 @@ if (true) {
 }
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(345)
+  __webpack_require__(346)
 }
 var Component = __webpack_require__(35)(
   /* script */
-  __webpack_require__(346),
-  /* template */
   __webpack_require__(347),
+  /* template */
+  __webpack_require__(348),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -22700,7 +22790,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 345 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -22726,7 +22816,7 @@ if(true) {
 }
 
 /***/ }),
-/* 346 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22736,7 +22826,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vuex = __webpack_require__(53);
+var _vuex = __webpack_require__(50);
 
 exports.default = {
     props: [],
@@ -22759,7 +22849,7 @@ exports.default = {
 //
 
 /***/ }),
-/* 347 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -22772,7 +22862,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, _vm._l((_vm.tags), function(tag) {
     return _c('router-link', {
       attrs: {
-        "to": {}
+        "to": {
+          path: '/?tag=' + tag.name
+        }
       }
     }, [_vm._v(_vm._s(tag.name + "(" + tag.count + ")"))])
   }))])
@@ -22786,19 +22878,19 @@ if (true) {
 }
 
 /***/ }),
-/* 348 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(349)
+  __webpack_require__(350)
 }
 var Component = __webpack_require__(35)(
   /* script */
-  __webpack_require__(350),
-  /* template */
   __webpack_require__(351),
+  /* template */
+  __webpack_require__(352),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -22830,7 +22922,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -22856,7 +22948,7 @@ if(true) {
 }
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22866,7 +22958,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vuex = __webpack_require__(53);
+var _vuex = __webpack_require__(50);
 
 exports.default = {
     created: function created() {
@@ -22893,7 +22985,7 @@ exports.default = {
 //
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -22924,19 +23016,19 @@ if (true) {
 }
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(353)
+  __webpack_require__(354)
 }
 var Component = __webpack_require__(35)(
   /* script */
-  __webpack_require__(354),
-  /* template */
   __webpack_require__(355),
+  /* template */
+  __webpack_require__(356),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -22968,7 +23060,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -22994,15 +23086,25 @@ if(true) {
 }
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -23013,25 +23115,89 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
-exports.default = {};
+var _vuex = __webpack_require__(50);
+
+exports.default = {
+    data: function data() {
+        return {
+            display: false
+        };
+    },
+
+    computed: (0, _vuex.mapGetters)({
+        articles: 'getAllArticle'
+    }),
+    methods: _extends({}, (0, _vuex.mapActions)(['getAllArticle']), {
+        focus: function focus() {
+            var _this = this;
+
+            console.log("focus");
+            this.handleKeyup = function (e) {
+                //console.log(e,e.keyCode);
+                if (e.keyCode === 13) _this.handleSearch();
+            };
+            document.addEventListener("keyup", this.handleKeyup);
+        },
+        blur: function blur() {
+            console.log("blur");
+            document.removeEventListener("keyup", this.handleKeyup);
+        },
+        handleSearch: function handleSearch() {
+            var _document$getElementB = document.getElementById("search-input"),
+                value = _document$getElementB.value;
+
+            if (value) {
+                this.display = true;
+                this.$store.dispatch("getAllArticle", value);
+            }
+        }
+    })
+};
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     attrs: {
       "id": "search"
     }
-  }, [_c('form', [_c('input', {
+  }, [_c('form', {
     attrs: {
-      "type": "text"
+      "onsubmit": "return false"
     }
-  }), _vm._v(" "), _c('button', [_vm._v("搜索")])])])
-}]}
+  }, [_c('input', {
+    attrs: {
+      "type": "text",
+      "id": "search-input"
+    },
+    on: {
+      "focus": _vm.focus,
+      "blur": _vm.blur
+    }
+  }), _vm._v(" "), _c('button', {
+    on: {
+      "click": _vm.handleSearch
+    }
+  }, [_vm._v("搜索")])]), _vm._v(" "), (_vm.display) ? _c('div', {
+    staticClass: "search-result"
+  }, [_c('h3', [_vm._v("本次共搜到"), _c('span', {
+    staticClass: "count"
+  }, [_vm._v(_vm._s(_vm.articles.length))]), _vm._v("篇博客")]), _vm._v(" "), _c('div', {
+    staticClass: "articles"
+  }, _vm._l((_vm.articles), function(article) {
+    return _c('router-link', {
+      attrs: {
+        "to": {
+          path: '/article/' + article._id
+        }
+      }
+    }, [_c('h4', {
+      staticClass: "title"
+    }, [_vm._v(_vm._s(article.title))])])
+  }))]) : _vm._e()])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (true) {
   module.hot.accept()
@@ -23041,7 +23207,7 @@ if (true) {
 }
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23055,19 +23221,19 @@ var _vue = __webpack_require__(22);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vuex = __webpack_require__(53);
+var _vuex = __webpack_require__(50);
 
 var _vuex2 = _interopRequireDefault(_vuex);
 
-var _actions = __webpack_require__(357);
+var _actions = __webpack_require__(358);
 
 var actions = _interopRequireWildcard(_actions);
 
-var _getters = __webpack_require__(363);
+var _getters = __webpack_require__(364);
 
 var getters = _interopRequireWildcard(_getters);
 
-var _mutations = __webpack_require__(364);
+var _mutations = __webpack_require__(365);
 
 var _mutations2 = _interopRequireDefault(_mutations);
 
@@ -23084,7 +23250,8 @@ var state = {
     articles: [],
     currentArticle: {},
     tags: [],
-    articleFiling: [{ date: String, data: [] }]
+    articleFiling: [{ date: String, data: [] }],
+    comments: []
 };
 
 exports.default = new _vuex2.default.Store({
@@ -23093,62 +23260,6 @@ exports.default = new _vuex2.default.Store({
     actions: actions,
     mutations: _mutations2.default
 });
-
-/***/ }),
-/* 357 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.getAllFilingArticle = exports.getAllTag = exports.getArticle = exports.getAllArticle = undefined;
-
-var _mutationTypes = __webpack_require__(129);
-
-var types = _interopRequireWildcard(_mutationTypes);
-
-var _index = __webpack_require__(358);
-
-var api = _interopRequireWildcard(_index);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-/**
- * Created by heben on 2017/5/7.
- */
-var getAllArticle = exports.getAllArticle = function getAllArticle(_ref) {
-    var commit = _ref.commit;
-    return api.getAllArticle(types.GET_ALL_ARTICLE.route, function (data) {
-        commit(types.GET_ALL_ARTICLE.action, { data: data });
-    });
-};
-
-var getArticle = exports.getArticle = function getArticle(_ref2, id) {
-    var commit = _ref2.commit;
-    return api.getArticle(types.GET_ARTICLE.route, id, function (data) {
-        commit(types.GET_ARTICLE.action, { data: data });
-    });
-};
-
-var getAllTag = exports.getAllTag = function getAllTag(_ref3) {
-    var commit = _ref3.commit;
-    return api.getAllTag(types.GET_ALL_TAG.route, function (data) {
-        commit(types.GET_ALL_TAG.action, { data: data });
-    });
-};
-
-var getAllFilingArticle = exports.getAllFilingArticle = function getAllFilingArticle(_ref4) {
-    var commit = _ref4.commit,
-        state = _ref4.state;
-
-    console.log("getAllFilingArticle", state);
-    api.getAllArticle(types.GET_ALL_ARTICLE.route, function (data) {
-        commit(types.GET_ALL_FILING_ARTICLE.action, { data: data });
-    });
-};
 
 /***/ }),
 /* 358 */
@@ -23160,11 +23271,82 @@ var getAllFilingArticle = exports.getAllFilingArticle = function getAllFilingArt
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.getAllTag = exports.getArticle = exports.getAllArticle = undefined;
+exports.getArticleComment = exports.getAllFilingArticle = exports.getAllTag = exports.getArticle = exports.getAllArticle = undefined;
 
-var _Fetch = __webpack_require__(359);
+var _mutationTypes = __webpack_require__(129);
 
-var _Logger = __webpack_require__(362);
+var types = _interopRequireWildcard(_mutationTypes);
+
+var _index = __webpack_require__(359);
+
+var api = _interopRequireWildcard(_index);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+/**
+ * Created by heben on 2017/5/7.
+ */
+var getAllArticle = exports.getAllArticle = function getAllArticle(_ref, _ref2) {
+    var commit = _ref.commit;
+    var search = _ref2.search,
+        tag = _ref2.tag;
+    //只能接受两个参数，第三个参数会被忽略
+    var url = types.GET_ALL_ARTICLE.route;
+    if (tag) url += "?tag=" + tag;
+    if (search) url += "?search=" + search;
+    api.getAllArticle(url, function (data) {
+        commit(types.GET_ALL_ARTICLE.action, { data: data });
+    });
+};
+
+var getArticle = exports.getArticle = function getArticle(_ref3, id) {
+    var commit = _ref3.commit;
+    return api.getArticle(types.GET_ARTICLE.route, id, function (data) {
+        commit(types.GET_ARTICLE.action, { data: data });
+    });
+};
+
+var getAllTag = exports.getAllTag = function getAllTag(_ref4) {
+    var commit = _ref4.commit;
+    return api.getAllTag(types.GET_ALL_TAG.route, function (data) {
+        commit(types.GET_ALL_TAG.action, { data: data });
+    });
+};
+
+var getAllFilingArticle = exports.getAllFilingArticle = function getAllFilingArticle(_ref5) {
+    var commit = _ref5.commit,
+        state = _ref5.state;
+
+    console.log("getAllFilingArticle", state);
+    api.getAllArticle(types.GET_ALL_ARTICLE.route, function (data) {
+        commit(types.GET_ALL_FILING_ARTICLE.action, { data: data });
+    });
+};
+
+var getArticleComment = exports.getArticleComment = function getArticleComment(_ref6, blogId) {
+    var commit = _ref6.commit,
+        state = _ref6.state;
+
+    api.getArticleComment(types.GET_ARTICLE_COMMENT.route + "?blogId=" + blogId, function (data) {
+        commit(types.GET_ARTICLE_COMMENT.action, { data: data });
+    });
+};
+
+/***/ }),
+/* 359 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.getArticleComment = exports.getAllTag = exports.getArticle = exports.getAllArticle = undefined;
+
+var _Fetch = __webpack_require__(360);
+
+var _Logger = __webpack_require__(363);
 
 /**
  * Created by heben on 2017/5/7.
@@ -23188,10 +23370,16 @@ var getAllTag = exports.getAllTag = function getAllTag(url, cb) {
     });
 };
 
+var getArticleComment = exports.getArticleComment = function getArticleComment(url, cb) {
+    (0, _Fetch.fetchGet)(url, function (json) {
+        return cb(json.data);
+    });
+};
+
 window.Debugger = _Logger.Debugger;
 
 /***/ }),
-/* 359 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23203,7 +23391,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.fetchGet = fetchGet;
 exports.fetchJsonPost = fetchJsonPost;
 
-var _isomorphicFetch = __webpack_require__(360);
+var _isomorphicFetch = __webpack_require__(361);
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -23242,7 +23430,6 @@ function showMsg(msg) {
 
 function fetchGet(url, successFunc) {
     (0, _isomorphicFetch2.default)(url, { credentials: 'include' }).then(function (response) {
-        console.log("response");
         return response.json();
     }).then(checkLogin).then(function (json) {
         if (json.errCode == 0) {
@@ -23279,19 +23466,19 @@ function fetchJsonPost(url, data, successFunc) {
 }
 
 /***/ }),
-/* 360 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // the whatwg-fetch polyfill installs the fetch() function
 // on the global object (window or self)
 //
 // Return that as the export for use in Webpack, Browserify etc.
-__webpack_require__(361);
+__webpack_require__(362);
 module.exports = self.fetch.bind(self);
 
 
 /***/ }),
-/* 361 */
+/* 362 */
 /***/ (function(module, exports) {
 
 (function(self) {
@@ -23758,7 +23945,7 @@ module.exports = self.fetch.bind(self);
 
 
 /***/ }),
-/* 362 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23815,7 +24002,7 @@ Debugger.log = function () {
 };
 
 /***/ }),
-/* 363 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23840,8 +24027,12 @@ var getAllTag = exports.getAllTag = function getAllTag(state) {
     return state.tags;
 };
 
+var getArticleComment = exports.getArticleComment = function getArticleComment(state) {
+    return state.comments;
+};
+
 /***/ }),
-/* 364 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23876,10 +24067,10 @@ var handleDate = function handleDate(timestamp) {
 exports.default = (_types$GET_ALL_ARTICL = {}, _defineProperty(_types$GET_ALL_ARTICL, types.GET_ALL_ARTICLE.action, function (state, _ref) {
     var data = _ref.data;
 
-    //state.articles = data;
-    data.forEach(function (art, index) {
-        _vue2.default.set(state.articles, index, art);
-    });
+    state.articles = data;
+    /*data.forEach((art,index) => {
+        Vue.set(state.articles,index,art);
+    });*/
 }), _defineProperty(_types$GET_ALL_ARTICL, types.GET_ALL_TAG.action, function (state, _ref2) {
     var data = _ref2.data;
 
@@ -23906,6 +24097,10 @@ exports.default = (_types$GET_ALL_ARTICL = {}, _defineProperty(_types$GET_ALL_AR
     }
     state.articles = res;
     console.log("res", res);
+}), _defineProperty(_types$GET_ALL_ARTICL, types.GET_ARTICLE_COMMENT.action, function (state, _ref5) {
+    var data = _ref5.data;
+
+    state.comments = data;
 }), _types$GET_ALL_ARTICL);
 
 /***/ })
