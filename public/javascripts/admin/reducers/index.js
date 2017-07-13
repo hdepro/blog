@@ -6,6 +6,7 @@
 import {combineReducers} from '../../../src/redux/CombineReducers'
 import {CREATE_BLOG,GET_ALL_BLOG,DELETE_BLOG,GET_BLOG,EDIT_BLOG,CHANGE_BLOG_STATE} from '../actions/action-types'
 import {CREATE_TAG,GET_ALL_TAG,DELETE_TAG,GET_TAG,EDIT_TAG} from '../actions/action-types'
+import {GET_BLOG_COMMENT,REPLY_COMMENT,DELETE_COMMENT} from '../actions/action-types'
 
 function reducerBlogArray(state=[],action){
     switch(action.type){
@@ -63,11 +64,25 @@ function reducerTag(state={},action){
     }
 }
 
+function reducerComment(state={},action){
+    switch(action.type){
+        case GET_BLOG_COMMENT:
+            return action.data;
+        case REPLY_COMMENT:
+            return ;
+        case DELETE_COMMENT:
+            return ;
+        default :
+            return state;
+    }
+}
+
 
 export default combineReducers({
     r_blog_list:reducerBlogArray,
     r_blog:reducerBlog,
     r_tag_list:reducerTagArray,
-    r_tag:reducerTag
+    r_tag:reducerTag,
+    r_comment_list:reducerBlog
 })
 

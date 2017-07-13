@@ -24,4 +24,9 @@ export const GET_ALL_TAG = {type:Symbol("GET_ALL_TAG"),route:"/tag/getAll"};
 export const GET_TAG = {type:Symbol("GET_TAG"),route:"/tag/getById"};
 export const EDIT_TAG = {type:Symbol("EDIT_TAG"),route:"/tag/edit"};
 
+export const GET_BLOG_COMMENT = {type:Symbol("GET_BLOG_COMMENT"),route:"/comment/getByBlogId"};
+export const REPLY_COMMENT = {type:Symbol("REPLY_COMMENT"),route:"/comment/reply"};
+export const DELETE_COMMENT = {type:Symbol("DELETE_COMMENT"),route:"/comment/delete"};
+
+export const GET_ALL_RECOMMEND = {type:Symbol("GET_ALL_RECOMMEND"),route:"/comment/getByBlogId"};
 

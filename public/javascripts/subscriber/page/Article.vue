@@ -23,8 +23,11 @@
             <iframe name="hide"></iframe>
         </div>
         <ul class="comments">
-            <li v-for="comment in comments">
+            <li class="comment-item" v-for="comment in comments">
                 <h5>{{comment.nickname}}</h5>
+                <p>
+                    {{comment.content}}
+                </p>
             </li>
         </ul>
     </div>
@@ -81,8 +84,8 @@
     }
     #article>.content{
         padding:20px;
-        line-height:2.4em;
-        font-size:16px;
+        line-height:1.8em;
+        font-size:15px;
         background-color:#f9f9f9;
     }
     #article>.footer{
@@ -93,5 +96,20 @@
     }
     iframe{
         display:none;
+    }
+
+    .comments{
+        margin-top:20px;
+    }
+    .comment-item{
+        padding:10px;
+        border-top:1px solid #ddd;
+        h5{
+            line-height:1.5;
+            color:#2973b7;
+        }
+        p{
+            line-height:1.5;
+        }
     }
 </style>

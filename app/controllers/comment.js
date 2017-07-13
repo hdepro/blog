@@ -32,6 +32,19 @@ exports.create = function(req,res,next){
     })
 };
 
+exports.reply = function(req,res,next){
+    let {_id,reply} = req.body;
+    Comment.reply(_id,reply,function(err,comment){
+        if(err) {
+            console.log("Comment reply error",err);
+            res.json(Message.error(err.message));
+        }
+        else{
+            console.log("reply comment",comment);
+            res.json(Message.success);
+        }
+    })
+};
 
 exports.delete = function(req,res,next){
     let _id = req.params._id;

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .circle-loading{
+            width:100px;
+            height:100px;
+            border:3px solid #585858;
+            border-left-color:transparent;
+            border-bottom-color:transparent;
+            border-radius:50%;
+            animation:rotateAnimation 1s linear infinite;
+        }
+        @keyframes rotateAnimation {
+            0%{ transform:rotate(0deg);}
+            100%{ transform:rotate(360deg);}
+        }
+
+
+        .pswp__preloader__icn {
+            opacity:0.75;
+            width: 24px;
+            height: 24px;
+            animation: clockwise 1000ms linear infinite;
+        }
+        /* The idea of animating inner circle is based on Polymer loading indicator by Keanu Lee https://blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html */
+        .pswp__preloader__cut {
+            position: relative;
+            width: 12px;
+            height: 24px;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .pswp__preloader__donut {
+            box-sizing: border-box;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: none;
+            margin:0;
+            animation: donut-rotate 2000ms cubic-bezier(.4,0,.22,1) infinite;
+        }
+        @keyframes clockwise {
+            0% { transform: rotate(0deg) }
+            100% { transform: rotate(360deg) }
+        }
+        @keyframes donut-rotate {
+            0% { transform: rotate(0) }
+            50% { transform: rotate(-140deg) }
+            100% { transform: rotate(0) }
+        }
+    </style>
+</head>
+<body>
+<div class="circle-loading">
+
+</div>
+<div class="pswp__preloader__icn">
+    <div class="pswp__preloader__cut">
+        <div class="pswp__preloader__donut"></div>
+    </div>
+</div>
+</body>
+</html>

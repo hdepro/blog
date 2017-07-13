@@ -26,6 +26,10 @@ exports.create = function(data,callback){
     Comment.create(obj,callback);
 };
 
+exports.reply = function(_id,reply,callback){
+   Comment.update({_id},{reply,updateTime:+new Date()},callback);
+};
+
 exports.getByBlogId = function(blogId,callback){
     if(blogId) Comment.find({blogId},null,{sort:{createTime:-1}},callback);
     else Comment.find().sort({createTime:-1}).exec(callback);

@@ -47,7 +47,7 @@
                 let {value} = document.getElementById("search-input");
                 if(value) {
                     this.display = true;
-                    this.$store.dispatch("getAllArticle",value)
+                    this.$store.dispatch("getAllArticle",{search:value})
                 }
             }
         }

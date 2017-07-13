@@ -32,6 +32,7 @@ route.get("/tag/getAll",Tag.getAll);
 route.get("/tag/getById/:_id",Tag.getById);
 
 route.post("/comment/create",Comment.create);
+route.post("/comment/reply/:_id",Auth.restrict,Comment.reply);
 route.get("/comment/delete/:_id",Auth.restrict,Comment.delete);
 route.get("/comment/getByBlogId",Comment.getByBlogId);
 route.get("/comment/getById",Comment.getById);

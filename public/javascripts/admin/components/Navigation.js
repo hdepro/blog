@@ -13,6 +13,8 @@ export default class Navigation extends React.Component{
                 <Menu.Item><Link to="/">我的博文</Link></Menu.Item>
                 <Menu.Item><Link to="/create">新建博文</Link></Menu.Item>
                 <Menu.Item><Link to="/tag">标签管理</Link></Menu.Item>
+                <Menu.Item><Link to="/comment">评论管理</Link></Menu.Item>
+                <Menu.Item><Link to="/recommend">推荐设置</Link></Menu.Item>
             </Menu>
         )
     }

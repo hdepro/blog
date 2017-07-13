@@ -15144,7 +15144,6 @@ function showMsg(msg) {
 
 function fetchGet(url, successFunc) {
     (0, _isomorphicFetch2.default)(url, { credentials: 'include' }).then(function (response) {
-        console.log("response");
         return response.json();
     }).then(checkLogin).then(function (json) {
         if (json.errCode == 0) {

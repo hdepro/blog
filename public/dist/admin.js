@@ -9449,6 +9449,12 @@ var GET_ALL_TAG = exports.GET_ALL_TAG = { type: Symbol("GET_ALL_TAG"), route: "/
 var GET_TAG = exports.GET_TAG = { type: Symbol("GET_TAG"), route: "/tag/getById" };
 var EDIT_TAG = exports.EDIT_TAG = { type: Symbol("EDIT_TAG"), route: "/tag/edit" };
 
+var GET_BLOG_COMMENT = exports.GET_BLOG_COMMENT = { type: Symbol("GET_BLOG_COMMENT"), route: "/comment/getByBlogId" };
+var REPLY_COMMENT = exports.REPLY_COMMENT = { type: Symbol("REPLY_COMMENT"), route: "/comment/reply" };
+var DELETE_COMMENT = exports.DELETE_COMMENT = { type: Symbol("DELETE_COMMENT"), route: "/comment/delete" };
+
+var GET_ALL_RECOMMEND = exports.GET_ALL_RECOMMEND = { type: Symbol("GET_ALL_RECOMMEND"), route: "/comment/getByBlogId" };
+
 /***/ }),
 /* 131 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -16899,7 +16905,6 @@ function showMsg(msg) {
 
 function fetchGet(url, successFunc) {
     (0, _isomorphicFetch2.default)(url, { credentials: 'include' }).then(function (response) {
-        console.log("response");
         return response.json();
     }).then(checkLogin).then(function (json) {
         if (json.errCode == 0) {
@@ -40102,11 +40107,28 @@ function reducerTag() {
     }
 }
 
+function reducerComment() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _actionTypes.GET_BLOG_COMMENT:
+            return action.data;
+        case _actionTypes.REPLY_COMMENT:
+            return;
+        case _actionTypes.DELETE_COMMENT:
+            return;
+        default:
+            return state;
+    }
+}
+
 exports.default = (0, _CombineReducers.combineReducers)({
     r_blog_list: reducerBlogArray,
     r_blog: reducerBlog,
     r_tag_list: reducerTagArray,
-    r_tag: reducerTag
+    r_tag: reducerTag,
+    r_comment_list: reducerBlog
 });
 
 /***/ }),
@@ -42687,6 +42709,24 @@ var Navigation = function (_React$Component) {
                         { to: '/tag' },
                         '\u6807\u7B7E\u7BA1\u7406'
                     )
+                ),
+                _react2.default.createElement(
+                    _menu2.default.Item,
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/comment' },
+                        '\u8BC4\u8BBA\u7BA1\u7406'
+                    )
+                ),
+                _react2.default.createElement(
+                    _menu2.default.Item,
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/recommend' },
+                        '\u63A8\u8350\u8BBE\u7F6E'
+                    )
                 )
             );
         }
@@ -42708,6 +42748,12 @@ exports.default = Navigation;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _css = __webpack_require__(125);
+
+var _button = __webpack_require__(124);
+
+var _button2 = _interopRequireDefault(_button);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -42753,6 +42799,7 @@ var Blog = function (_React$Component) {
             var params = this.props.match.params;
 
             dispatch(_index.Actions.getById(_actionTypes.GET_BLOG, params._id));
+            dispatch(_index.Actions.getAll(_actionTypes.GET_BLOG_COMMENT, params._id));
         }
     }, {
         key: 'componentDidMount',
@@ -42762,7 +42809,9 @@ var Blog = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var c_blog = this.props.c_blog;
+            var _props = this.props,
+                c_blog = _props.c_blog,
+                c_comment_list = _props.c_comment_list;
 
             if (c_blog.content && this.content) this.content.innerHTML = c_blog.contentHtml;
             return _react2.default.createElement(
@@ -42778,7 +42827,41 @@ var Blog = function (_React$Component) {
                     ),
                     c_blog.title
                 ),
-                _react2.default.createElement('div', { id: 'blog-content' })
+                _react2.default.createElement('div', { id: 'blog-content' }),
+                _react2.default.createElement(
+                    'ul',
+                    { className: 'comments' },
+                    c_comment_list.map(function (comment) {
+                        return _react2.default.createElement(
+                            'li',
+                            { className: 'comment-item' },
+                            _react2.default.createElement(
+                                'h5',
+                                null,
+                                comment.nickname
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                comment.content
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                _react2.default.createElement(
+                                    _button2.default,
+                                    { type: 'primary' },
+                                    '\u56DE\u590D'
+                                ),
+                                _react2.default.createElement(
+                                    _button2.default,
+                                    null,
+                                    '\u5220\u9664'
+                                )
+                            )
+                        );
+                    })
+                )
             );
         }
     }]);
@@ -42788,7 +42871,8 @@ var Blog = function (_React$Component) {
 
 function mapStateToProps(state) {
     return {
-        c_blog: state.r_blog
+        c_blog: state.r_blog,
+        c_comment_list: state.r_comment_list
     };
 }
 

@@ -24,6 +24,7 @@
         margin:20px 0;
         border-radius: 10px;
         background:#f8f8f8;
+        font-size:15px;
     }
     .article-item>.header{
         padding:15px 20px;

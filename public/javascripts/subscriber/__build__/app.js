@@ -11076,7 +11076,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, "\n.article-item[data-v-2272edf9]{\n    width:90%;\n    margin:20px 0;\n    border-radius: 10px;\n    background:#f8f8f8;\n}\n.article-item>.header[data-v-2272edf9]{\n    padding:15px 20px;\n    border-bottom:1px solid #ddd;\n}\n.header>h2[data-v-2272edf9]{\n    font-weight:500;\n    width:85%;\n}\n.article-item>.header>span[data-v-2272edf9]{\n    float:right;\n}\n.article-item>.content[data-v-2272edf9]{\n    padding:10px 20px;\n}\n.article-item>.footer[data-v-2272edf9]{\n    padding:10px 20px;\n    color:green;\n}\n", ""]);
+exports.push([module.i, "\n.article-item[data-v-2272edf9]{\n    width:90%;\n    margin:20px 0;\n    border-radius: 10px;\n    background:#f8f8f8;\n    font-size:15px;\n}\n.article-item>.header[data-v-2272edf9]{\n    padding:15px 20px;\n    border-bottom:1px solid #ddd;\n}\n.header>h2[data-v-2272edf9]{\n    font-weight:500;\n    width:85%;\n}\n.article-item>.header>span[data-v-2272edf9]{\n    float:right;\n}\n.article-item>.content[data-v-2272edf9]{\n    padding:10px 20px;\n}\n.article-item>.footer[data-v-2272edf9]{\n    padding:10px 20px;\n    color:green;\n}\n", ""]);
 
 // exports
 
@@ -11090,7 +11090,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, "\n#article > h2[data-v-1ace19ff] {\n  margin-bottom: 20px;\n  text-align: center;\n  font-weight: 500;\n}\n#article > .content[data-v-1ace19ff] {\n  padding: 20px;\n  line-height: 2.4em;\n  font-size: 16px;\n  background-color: #f9f9f9;\n}\n#article > .footer[data-v-1ace19ff] {\n  margin: 20px 0;\n  padding: 15px 0;\n  border-top: 1px solid #ddd;\n  border-bottom: 1px solid #ddd;\n}\niframe[data-v-1ace19ff] {\n  display: none;\n}\n", ""]);
+exports.push([module.i, "\n#article > h2[data-v-1ace19ff] {\n  margin-bottom: 20px;\n  text-align: center;\n  font-weight: 500;\n}\n#article > .content[data-v-1ace19ff] {\n  padding: 20px;\n  line-height: 1.8em;\n  font-size: 15px;\n  background-color: #f9f9f9;\n}\n#article > .footer[data-v-1ace19ff] {\n  margin: 20px 0;\n  padding: 15px 0;\n  border-top: 1px solid #ddd;\n  border-bottom: 1px solid #ddd;\n}\niframe[data-v-1ace19ff] {\n  display: none;\n}\n.comments[data-v-1ace19ff] {\n  margin-top: 20px;\n}\n.comment-item[data-v-1ace19ff] {\n  padding: 10px;\n  border-top: 1px solid #ddd;\n}\n.comment-item h5[data-v-1ace19ff] {\n    line-height: 1.5;\n    color: #2973b7;\n}\n.comment-item p[data-v-1ace19ff] {\n    line-height: 1.5;\n}\n", ""]);
 
 // exports
 
@@ -22620,6 +22620,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 var _vuex = __webpack_require__(50);
 
@@ -22734,7 +22737,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 1), _vm._v(" "), _c('ul', {
     staticClass: "comments"
   }, _vm._l((_vm.comments), function(comment) {
-    return _c('li', [_c('h5', [_vm._v(_vm._s(comment.nickname))])])
+    return _c('li', {
+      staticClass: "comment-item"
+    }, [_c('h5', [_vm._v(_vm._s(comment.nickname))]), _vm._v(" "), _c('p', [_vm._v("\n                " + _vm._s(comment.content) + "\n            ")])])
   }))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -23148,7 +23153,7 @@ exports.default = {
 
             if (value) {
                 this.display = true;
-                this.$store.dispatch("getAllArticle", value);
+                this.$store.dispatch("getAllArticle", { search: value });
             }
         }
     })
