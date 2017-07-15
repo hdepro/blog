@@ -18,13 +18,11 @@
       float:right;
       margin-bottom:10px;
       &>p{
-        font-size:16px;
         margin-bottom:10px;
       }
     }
   }
   .content{
-    font-size:16px;
     &:after{
       content:"点击阅读更多>>";
       color:green;
@@ -50,4 +48,25 @@
       vertical-align:middle;
     }
   }
+
+  .editor{
+    width:100%;
+    margin-top:20px;
+    padding:8px;
+    border:1px solid #d1d5da;
+    border-radius: 3px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    &:focus{
+      border-color: #49a9ee;
+      outline: 0;
+      box-shadow: 0 0 0 2px rgba(16, 142, 233, 0.2);
+    }
+  }
+  textarea{
+    width:100%;
+    line-height: 22px;
+    font-size:14px;
+  }
+
+
 }

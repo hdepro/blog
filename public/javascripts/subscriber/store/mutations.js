@@ -44,4 +44,8 @@ export default {
     [types.GET_ARTICLE_COMMENT.action](state,{data}){
         state.comments = data;
     },
+
+    [types.GET_ALL_RECOMMEND.action](state,{data}){
+        state.recommends = data;
+    },
 }

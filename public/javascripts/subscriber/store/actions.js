@@ -36,3 +36,9 @@ export const getArticleComment = ({commit,state},blogId) => {
         commit(types.GET_ARTICLE_COMMENT.action,{data})
     });
 };
+
+export const getAllRecommend = ({commit,state}) => {
+    api.getAllRecommend(types.GET_ALL_RECOMMEND.route,(data) => {
+        commit(types.GET_ALL_RECOMMEND.action,{data})
+    });
+};

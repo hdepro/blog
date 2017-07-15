@@ -28,7 +28,7 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="/commend">
+                <router-link to="/recommend">
                     <svg class="icon" aria-hidden="">
                         <use xlink:href="#icon-tuijian1"></use>
                     </svg>
@@ -59,6 +59,7 @@
 
 <style scoped>
     #sidebar{
+        top:0;
         position:fixed;
         width:12%;
         height:100%;

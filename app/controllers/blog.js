@@ -14,7 +14,7 @@ let Message = require("../common/message");
 let blogState = require('../common/constant').blogState;
 
 const mdToHtml = (content,length) => {
-    return marked(content.split(/\n/).slice(0,length).join("  \n"));
+    return marked(content.split(/[\n]+/).slice(0,length).join("  \n"));
 };
 
 exports.getAll = function(req,res,next){

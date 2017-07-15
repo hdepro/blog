@@ -4,7 +4,7 @@
         <div id="side">
             <sidebar></sidebar>
         </div>
-        <div id="content">
+        <div id="main">
             <router-view></router-view>
         </div>
     </div>
@@ -23,13 +23,14 @@
 <style>
     #app{
         background:#eaedf1;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     }
     #side{
         display:inline-block;
         width:12%;
         height:100%;
     }
-    #content{
+    #main{
         display:inline-block;
         width:82%;
         margin-left:3%;

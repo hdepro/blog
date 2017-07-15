@@ -27,7 +27,7 @@ exports.create = function(data,callback){
 };
 
 exports.reply = function(_id,reply,callback){
-   Comment.update({_id},{reply,updateTime:+new Date()},callback);
+    Comment.update({_id},{reply,updateTime:+new Date()},callback);
 };
 
 exports.getByBlogId = function(blogId,callback){

@@ -8,6 +8,7 @@ let Blog = require("./app/controllers/blog");
 let Tag = require("./app/controllers/tag");
 let File = require("./app/controllers/file");
 let Comment = require("./app/controllers/comment");
+let Recommend = require("./app/controllers/recommend");
 let User = require("./app/controllers/user");
 
 let route = express.Router();
@@ -32,11 +33,14 @@ route.get("/tag/getAll",Tag.getAll);
 route.get("/tag/getById/:_id",Tag.getById);
 
 route.post("/comment/create",Comment.create);
-route.post("/comment/reply/:_id",Auth.restrict,Comment.reply);
+route.post("/comment/reply",Auth.restrict,Comment.reply);
 route.get("/comment/delete/:_id",Auth.restrict,Comment.delete);
 route.get("/comment/getByBlogId",Comment.getByBlogId);
 route.get("/comment/getById",Comment.getById);
 
+route.post("/recommend/create",Auth.restrict,Recommend.create);
+route.get("/recommend/getAll",Recommend.getAll);
+route.get("/recommend/delete/:_id",Auth.restrict,Recommend.delete);
 
 let multer = require('multer');
 let upload = multer({ dest: 'uploads/multer'});

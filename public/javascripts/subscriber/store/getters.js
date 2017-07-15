@@ -18,3 +18,7 @@ export const getAllTag = (state) => {
 export const getArticleComment = (state) => {
     return state.comments;
 };
+
+export const getAllRecommend = (state) => {
+    return state.recommends;
+};

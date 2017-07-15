@@ -36,7 +36,7 @@ class CreateBlog extends React.Component{
         const callback = ()=>{
             Debugger.log("创建博客成功");
             message.success("创建博客成功",2,()=>{
-                this.props.history.push("/");
+                //this.props.history.push("/");
             });
         };
         this.props.form.validateFields((err, values) => {
@@ -44,31 +44,12 @@ class CreateBlog extends React.Component{
                 console.log('Received create blog values of form: ', values);
                 if(this.state.type) {
                     values._id = this.props.match.params._id;
+                    values.content = this.refs.editor.getData();
                     this.props.dispatch(Actions.edit(EDIT_BLOG,values,callback));
                 }
                 else this.props.dispatch(Actions.create(CREATE_BLOG,values,callback));
             }
         });
-    }
-    handleTextAreaChange= (e) =>{
-        let refer = this.refer.refs.input;
-        refer.value = e.target.value;
-        console.log(e.target.offsetHeight,refer.scrollHeight,refer.offsetHeight);
-        e.target.rows = parseInt((refer.scrollHeight - refer.offsetHeight)/27)+12;
-    };
-    handleHeaderClick = (str) =>{
-        let node = document.querySelector("textarea");
-        console.log(node.selectionStart,node.selectionEnd,str,node.value);
-        let start = node.selectionStart;
-        let index = node.value.lastIndexOf("\n",start);
-        let value = node.value;
-        node.value = value.slice(0,index+1)+str+value.slice(index+1);
-    };
-    handleShortCutClick(str){
-        let node = document.querySelector("textarea");
-        let start = node.selectionStart;
-        let value = node.value;
-        node.value = value.slice(0,start+1)+str+value.slice(start+1);
     }
     render(){
         const { getFieldDecorator } = this.props.form;
@@ -106,16 +87,8 @@ class CreateBlog extends React.Component{
                             </Select>
                         )}
                     </FormItem>
-                    <Editor header={this.handleHeaderClick} shortCut={this.handleShortCutClick}/>
-                    <FormItem label="编辑内容">
-                        {getFieldDecorator('content', {
-                            rules: [{ required: true, message: 'Please input your content!' }],
-                            initialValue:c_blog.content,
-                            onChange:this.handleTextAreaChange
-                        })(
-                            <Input rows={12} type="textarea" placeholder=""/>
-                        )}
-                    </FormItem>
+                    <h5>编辑内容</h5>
+                    <Editor ref="editor" defaultValue={c_blog.content}/>
                     <FormItem>
                         <Button type="primary" htmlType="submit" className="login-form-button">
                             确定

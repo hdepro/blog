@@ -21,7 +21,7 @@ class TagBox extends React.Component{
         dispatch(Actions.getAll(GET_ALL_TAG));
     }
     showAdd(){
-        document.getElementsByClassName("add-tag-form").item(0).classList.add("show");
+        document.getElementsByClassName("add-form").item(0).classList.add("show");
     }
     add = (e)=>{
         e.preventDefault();
@@ -37,7 +37,7 @@ class TagBox extends React.Component{
     };
     cancel = (e)=>{
         e.preventDefault();
-        document.getElementsByClassName("add-tag-form").item(0).classList.remove("show");
+        document.getElementsByClassName("add-form").item(0).classList.remove("show");
     };
     onClose = (e) => {
         let target = e.target;
@@ -80,7 +80,7 @@ class TagBox extends React.Component{
         return(
             <div>
                 <Button type="primary" icon="plus" onClick={this.showAdd}/>
-                <Form layout="inline" ref="form" onSubmit={this.add} className="add-tag-form">
+                <Form layout="inline" ref="form" onSubmit={this.add} className="add-form">
                     <FormItem>
                         {getFieldDecorator('name', {
                             rules: [{ required: true, message: 'Please input your tag name!' }],

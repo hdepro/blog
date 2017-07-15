@@ -5,7 +5,7 @@ let mongoose  = require('mongoose');
 let Schema = mongoose.Schema;
 
 let tagSchema = new Schema({
-    name:String,
+    name:{type:String,required:true},
     description:String,
     createTime:Number,
     updateTime:Number

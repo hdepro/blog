@@ -21,4 +21,8 @@ export const getArticleComment = (url,cb) => {
     fetchGet(url,json => cb(json.data))
 };
 
+export const getAllRecommend = (url,cb) => {
+    fetchGet(url,json => cb(json.data))
+};
+
 window.Debugger = Debugger;

@@ -10,6 +10,7 @@ import App from './App'
 import CreateBlog from '../containers/CreateBlog'
 import Blog from '../containers/Blog'
 import Tag from '../containers/Tag'
+import Recommend from '../containers/Recommend'
 import Home from '../containers/Home'
 
 import './scss/style.scss'
@@ -32,6 +33,7 @@ export const route =(
             <Route path="/create" component={CreateBlog}/>
             <Route path="/edit/:_id" component={CreateBlog}/>
             <Route path="/tag" component={Tag}/>
+            <Route path="/recommend" component={Recommend}/>
         </App>
     </BrowserRouter>
 );

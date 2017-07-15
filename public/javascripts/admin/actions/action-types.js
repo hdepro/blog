@@ -28,5 +28,7 @@ export const GET_BLOG_COMMENT = {type:Symbol("GET_BLOG_COMMENT"),route:"/comment
 export const REPLY_COMMENT = {type:Symbol("REPLY_COMMENT"),route:"/comment/reply"};
 export const DELETE_COMMENT = {type:Symbol("DELETE_COMMENT"),route:"/comment/delete"};
 
-export const GET_ALL_RECOMMEND = {type:Symbol("GET_ALL_RECOMMEND"),route:"/comment/getByBlogId"};
+export const GET_ALL_RECOMMEND = {type:Symbol("GET_ALL_RECOMMEND"),route:"/recommend/getAll"};
+export const CREATE_RECOMMEND = {type:Symbol("CREATE_RECOMMEND"),route:"/recommend/create"};
+export const DELETE_RECOMMEND = {type:Symbol("DELETE_RECOMMEND"),route:"/recommend/delete"};
 

@@ -5,17 +5,47 @@
 import React from 'react'
 
 export class Editor extends React.Component{
-    handleHeader = (str)=>{
-        this.props.header(str);
+    handleTextAreaChange= (e) =>{
+        let refer = this.refs.input;
+        refer.value = e.target.value;
+        console.log(e.target.offsetHeight,refer.scrollHeight,refer.offsetHeight);
+        e.target.rows = parseInt((refer.scrollHeight - refer.offsetHeight)/27)+15;
     };
-    handleShortCut = (str)=>{
-        this.props.shortCut(str);
+    handleHeader = (str) =>{
+        let node = document.querySelector("textarea");
+        console.log(node.selectionStart,node.selectionEnd,str,node.value);
+        let start = node.selectionStart;
+        let index = node.value.lastIndexOf("\n",start);
+        let value = node.value;
+        node.value = value.slice(0,index+1)+str+value.slice(index+1);
     };
+    handleShortCut(str){
+        let node = document.querySelector("textarea");
+        let start = node.selectionStart;
+        let value = node.value;
+        node.value = value.slice(0,start+1)+str+value.slice(start+1);
+    }
+    getData(){
+        let value = this.refs.content.value;
+        return value;
+    }
     render(){
+        const {defaultValue} = this.props;
+        let textarea;
+        if(defaultValue){
+            textarea = <textarea key="defaultValue" className="editor" ref="content" rows="15" defaultValue={defaultValue}
+                      onChange={this.handleTextAreaChange}/>;
+        }else{
+            textarea = <textarea key="not-defaultValue" className="editor" ref="content" rows="15"
+                                 onChange={this.handleTextAreaChange}/>;
+        }
         return(
             <div className="editor">
                 <Header click={this.handleHeader}/>
                 <ShortCut click={this.handleShortCut}/>
+                {textarea}
+                {/*ref={(input) => this.refer = input}*/}
+                <textarea rows={1} ref="input"  style={{visibility:'hidden'}} />
             </div>
         )
     }
