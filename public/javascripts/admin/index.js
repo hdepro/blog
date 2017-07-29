@@ -19,4 +19,3 @@ ReactDOM.render(
         {route}
     </Provider>, document.getElementById("admin-home")
 );
-
