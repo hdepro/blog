@@ -1,16 +1,16 @@
 .create-blog-form{
-  width:80%;
+  width:90%;
   margin:auto;
   .ant-form-text{
     font-size:20px;
   }
-  input,.ant-select-selection,textarea{
+  input,.ant-select-selection{
     height:40px;
-    font-size:18px;
+    font-size:14px;
   }
 }
 
-.add-tag-form{
+.add-form{
   display:inline;
   margin-left:20px;
   opacity:0;
@@ -22,7 +22,6 @@
 }
 
 .tag{
-  font-size:16px;
   margin-left:20px;
   padding:8px 12px;
   height:36px;
@@ -42,10 +41,34 @@
     font-size:25px;
     [name=tag]{
       float:right;
-      font-size:16px;
     }
   }
   #blog-content{
-    font-size:16px;
+    margin-bottom:20px;
   }
+  .comment{
+    h4{
+      font-size:20px;
+    }
+  }
+  .comment-item{
+    margin:15px 0;
+    .operation{
+      text-align:right;
+      button{
+        margin-left:20px;
+      }
+    }
+    .reply{
+      margin-top:10px;
+      button{
+        margin-top:10px;
+        float:right;
+      }
+    }
+  }
+}
+
+.hide{
+  display:none;
 }

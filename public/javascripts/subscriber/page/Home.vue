@@ -7,11 +7,13 @@
 <script>
     import { mapGetters, mapActions } from 'vuex'
     import ArtItem from '../components/ArticleItem.vue'
+    import {Util} from '../../constants/Util'
 
     export default {
         name:'home',
         created(){
-            this.$store.dispatch('getAllArticle');
+            let tag = Util.parseUrl(location.search).get("tag");
+            this.$store.dispatch('getAllArticle',{tag});
         },
         computed: mapGetters({
             articles:'getAllArticle'

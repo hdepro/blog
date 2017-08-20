@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import NaVigation  from './Navigation'
+import Navigation  from './Navigation'
 import {Layout} from 'antd'
 const { Header,Sider,Content } = Layout;
 
@@ -12,9 +12,9 @@ export default class App extends React.Component{
         return(
             <Layout>
                 <Sider width={200}>
-                    <NaVigation/>
+                    <Navigation/>
                 </Sider>
-                <Content style={{padding:'20px',minHeight:'1000px'}}>
+                <Content style={{padding:'20px',minHeight:'1000px',fontSize:'16px'}}>
                     {this.props.children}
                 </Content>
             </Layout>

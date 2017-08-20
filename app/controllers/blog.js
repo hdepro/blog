@@ -14,24 +14,43 @@ let Message = require("../common/message");
 let blogState = require('../common/constant').blogState;
 
 const mdToHtml = (content,length) => {
-    return marked(content.split(/\n/).slice(0,length).join("  \n"));
+    return marked(content.split(/[\n]+/).slice(0,length).join("  \n"));
 };
 
 exports.getAll = function(req,res,next){
     let state;
     if(!req.session.user) state = blogState.open;
+    let {tag,search} = req.query;
+    console.log("tag",tag);
     Blog.getAll(state,function(err,blogs){
         if(err) console.log("Blog getAll error",err);
         else{
-            console.log("getAll blogs",blogs);
-            let data = blogs.map(blog => {
-                let data = blog.toObject();
-                data.contentHtml = mdToHtml(blog.content,6);
-                //console.log(data.content);
-                return data;
-            });
-            let obj = Object.assign(Message.success,{data});
-            res.json(obj);
+            //console.log("getAll blogs",blogs);
+            if(tag){
+                Tag.getByName(tag,function(err,oneTag){
+                    let data = blogs.filter(blog => blog.tagId == oneTag._id);
+                    if(search) data = data.filter(blog => blog.title.includes(search));
+                    data = data.map(blog => {
+                        let data = blog.toObject();
+                        data.contentHtml = mdToHtml(blog.content,6);
+                        //console.log(data.content);
+                        return data;
+                    });
+                    let obj = Object.assign(Message.success,{data});
+                    res.json(obj);
+                });
+            }else{
+                    let data = blogs;
+                    if(search) data = blogs.filter(blog => blog.title.includes(search));
+                    data = data.map(blog => {
+                        let data = blog.toObject();
+                        data.contentHtml = mdToHtml(blog.content,6);
+                        //console.log(data.content);
+                        return data;
+                    });
+                    let obj = Object.assign(Message.success,{data});
+                    res.json(obj);
+            }
         }
     })
 };
@@ -93,28 +112,24 @@ exports.getById = function(req,res,next){
                     let data = blog.toObject();
                     data.contentHtml = mdToHtml(blog.content);
                     data.tagName = tag.name;
-                    let obj = Object.assign(Message.success,{data});
-                    res.json(obj);
+                    Blog.getAll(blogState.open,function(err,blogs){
+                        let index = blogs.findIndex(b => b._id == _id);
+                        console.log("blogs",blogs,index);
+                        data.prev = blogs[index-1];
+                        data.next = blogs[index+1];
+                        let obj = Object.assign(Message.success,{data});
+                        res.json(obj);
+                    });
                 }
             });
         }
     });
 };
 
-exports.getByTagId = function(req,res,next){
-    let tagId = req.params.tagId;
-    Blog.getByTagId(tagId,function(err,doc){
-        if(err) console.log("Blog getByTagId error",err);
-        else{
-            let obj = Object.assign(Message.success,{data:doc});
-            res.json(obj);
-        }
-    })
-};
 
 exports.changeState = function(req,res){
     let {_id,state} = req.query;
-    Blog.update(_id,state,function(err,doc){
+    Blog.changeState(_id,state,function(err,doc){
         if(err) console.log("Blog changeState err",err);
         else {
             res.json(Message.success)

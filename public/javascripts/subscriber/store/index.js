@@ -22,7 +22,9 @@ const state = {
     ],
     articleFiling:[
         {date:String,data:[]}
-    ]
+    ],
+    comments:[],
+    recommends:[]
 };
 
 export default new Vuex.Store({

@@ -20,13 +20,14 @@
 
 <style scoped>
     .article-item{
-        width:90%;
+        width:94%;
         margin:20px 0;
         border-radius: 10px;
         background:#f8f8f8;
+        font-size:15px;
     }
     .article-item>.header{
-        padding:15px 20px;
+        padding:10px 20px;
         border-bottom:1px solid #ddd;
     }
     .header>h2{
@@ -40,7 +41,6 @@
         padding:10px 20px;
     }
     .article-item>.footer{
-        padding:10px 20px;
-        color:green;
+        padding:0 20px 10px;
     }
 </style>

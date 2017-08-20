@@ -7,3 +7,9 @@ exports.blogState = {
     open:'open',
     delete:'delete'
 };
+
+exports.commentState = {
+    close:'close',
+    open:'open',
+    delete:'delete'
+};

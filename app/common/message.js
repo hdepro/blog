@@ -3,4 +3,9 @@
  */
 
 exports.success = {errCode:0,msg:"ok"};
-exports.error = {errCode:500,msg:"error"};
+exports.error = (msg)=>{
+    return {
+        errCode:500,
+        msg
+    }
+};

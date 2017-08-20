@@ -7,9 +7,9 @@ let blogState = require('../common/constant').blogState;
 let Schema = mongoose.Schema;
 
 let blogSchema = new Schema({
-    title:String,
-    tagId:String,
-    content:String,
+    title:{type:String,required:true},
+    tagId:{type:String,required:true},
+    content:{type:String,required:true},
     state:{type:String,default:blogState.close},
     createTime:Number,
     updateTime:Number
@@ -32,8 +32,8 @@ exports.edit = function(data,callback){
 };
 
 exports.getAll = function(state,callback){
-    if(state) Blog.find({state},callback);
-    else Blog.find(callback);
+    if(state) Blog.find({state},null,{sort:{createTime:-1}},callback);
+    else Blog.find().sort({createTime:-1}).exec(callback);
 };
 
 exports.delete = function(_id,callback){
@@ -42,10 +42,6 @@ exports.delete = function(_id,callback){
 
 exports.getById = function(_id,callback){
     Blog.findById(_id,callback);
-};
-
-exports.getByTagId = function(tagId,callback){
-    Blog.find({tagId},callback);
 };
 
 exports.count = function(tagId,callback){

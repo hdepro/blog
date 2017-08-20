@@ -36,9 +36,9 @@ function deletes(callback){
 create({
     title:1000,
     content:"content",
-    createTime:"123",
+    createTime:"125",
     updateTime:1
-},function(err,doc){
+}/*,function(err,doc){
     if(err) console.log(err);
     else {
         console.log(doc);
@@ -53,7 +53,7 @@ create({
         });
         console.log("remove finished");
     }
-});
+}*/);
 
 let s = Blog.findOne({updateTime:1},function(err,doc){
     console.log("count",doc);

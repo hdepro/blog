@@ -18,3 +18,5 @@ db.once('open', function() {
 exports.User = require("./user");
 exports.Blog = require("./blog");
 exports.Tag = require("./tag");
+exports.Comment = require("./comment");
+exports.Recommend = require("./recommend");

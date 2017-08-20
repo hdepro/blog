@@ -14,3 +14,11 @@ export const getArticle = (state) => {
 export const getAllTag = (state) => {
     return state.tags;
 };
+
+export const getArticleComment = (state) => {
+    return state.comments;
+};
+
+export const getAllRecommend = (state) => {
+    return state.recommends;
+};

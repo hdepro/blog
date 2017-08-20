@@ -6,6 +6,8 @@
 import {combineReducers} from '../../../src/redux/CombineReducers'
 import {CREATE_BLOG,GET_ALL_BLOG,DELETE_BLOG,GET_BLOG,EDIT_BLOG,CHANGE_BLOG_STATE} from '../actions/action-types'
 import {CREATE_TAG,GET_ALL_TAG,DELETE_TAG,GET_TAG,EDIT_TAG} from '../actions/action-types'
+import {GET_BLOG_COMMENT,REPLY_COMMENT,DELETE_COMMENT} from '../actions/action-types'
+import {GET_ALL_RECOMMEND,CREATE_RECOMMEND,DELETE_RECOMMEND} from '../actions/action-types'
 
 function reducerBlogArray(state=[],action){
     switch(action.type){
@@ -63,11 +65,44 @@ function reducerTag(state={},action){
     }
 }
 
+function reducerCommentArray(state=[],action){
+    switch(action.type){
+        case GET_BLOG_COMMENT:
+            return action.data;
+        case REPLY_COMMENT:
+            let comment = state.find(s => s._id === action.data._id);
+            Object.assign(comment,action.data);
+            return state;
+        case DELETE_COMMENT:
+            let index = state.findIndex(s => s._id === action.data);
+            return [...state.slice(0,index),...state.slice(index+1)];
+            return ;
+        default :
+            return state;
+    }
+}
+
+function reducerRecommendArray(state=[],action){
+    switch(action.type){
+        case GET_ALL_RECOMMEND:
+            return action.data;
+        case CREATE_RECOMMEND:
+            return [...state,action.data];
+        case DELETE_RECOMMEND:
+            let index = state.findIndex(s => s._id === action.data);
+            return [...state.slice(0,index),...state.slice(index+1)];
+            return ;
+        default :
+            return state;
+    }
+}
 
 export default combineReducers({
     r_blog_list:reducerBlogArray,
     r_blog:reducerBlog,
     r_tag_list:reducerTagArray,
-    r_tag:reducerTag
+    r_tag:reducerTag,
+    r_comment_list:reducerCommentArray,
+    r_recommend_list:reducerRecommendArray
 })
 

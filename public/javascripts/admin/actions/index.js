@@ -18,6 +18,22 @@ class ActionClass{
         }
     }
 
+    getAllByQuery(Action,query){
+        let url = Action.route+"?";
+        for(let p in query){
+            url += p+"="+query[p]+"&";
+        }
+        return dispatch => {
+            return fetchGet(url, function (json) {
+                console.log('json', json);
+                dispatch({
+                    type: Action,
+                    data: json.data
+                })
+            })
+        }
+    }
+
     create(Action,data,cb){
         return dispatch => {
             return fetchJsonPost(Action.route,data,function(json) {

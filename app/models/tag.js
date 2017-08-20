@@ -5,7 +5,7 @@ let mongoose  = require('mongoose');
 let Schema = mongoose.Schema;
 
 let tagSchema = new Schema({
-    name:String,
+    name:{type:String,required:true},
     description:String,
     createTime:Number,
     updateTime:Number
@@ -37,4 +37,7 @@ exports.getById = function(_id,callback){
     Tag.findById(_id,callback);
 };
 
+exports.getByName = function(name,callback){
+    Tag.findOne({name},callback);
+};
 

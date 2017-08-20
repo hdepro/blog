@@ -1,7 +1,7 @@
 <template>
     <div id="tag">
         <div class="tag-item">
-            <router-link v-for="tag in tags" :to="{}">{{tag.name+"("+tag.count+")"}}</router-link>
+            <router-link v-for="tag in tags" :to="{path:'/?tag='+tag.name}">{{tag.name+"("+tag.count+")"}}</router-link>
         </div>
     </div>
 </template>
