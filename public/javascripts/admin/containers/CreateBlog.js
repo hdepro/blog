@@ -47,7 +47,10 @@ class CreateBlog extends React.Component{
                     values.content = this.refs.editor.getData();
                     this.props.dispatch(Actions.edit(EDIT_BLOG,values,callback));
                 }
-                else this.props.dispatch(Actions.create(CREATE_BLOG,values,callback));
+                else {
+                    values.content = this.refs.editor.getData();
+                    this.props.dispatch(Actions.create(CREATE_BLOG,values,callback));
+                }
             }
         });
     }
